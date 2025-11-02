@@ -41,7 +41,7 @@ colors:
 
 gradients:
   # Soft background used on the home/hero & a few other screens
-  primary.gradient:
+  primary.gradient(also referred to as white.gradient):
     type: radial
     at: "0% 0%"
     stops: ["#FFFFFF","#FFFFFF","#F2FFFB","#FEFCF3","#FFFFFF","#FFFFFF"]
@@ -234,4 +234,5 @@ usage:
 notes:
   - Focus rings are intentionally NOT used (touch/mobile only).
   - Keep Rubik weights to 300/400/500 only (Light/Regular/Medium).
+
 
