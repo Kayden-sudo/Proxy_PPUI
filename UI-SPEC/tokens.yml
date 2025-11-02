@@ -1,0 +1,115 @@
+# UI-SPEC/tokens.yml
+version: 1
+info:
+  scale_reference: "Design built at 1080×1920; runtime target 360×640 (all sizes ÷3)."
+  brand_name: "Proxy"
+
+colors:
+  text:
+    primary: "#0A0903"        # body text
+    secondary: "#767674"       # subdued/secondary text
+  border:
+    secondary: "#767674"
+  surface:
+    app: "#F3F4F6"             # default in-app background
+    white: "#FFFFFF"
+  overlay:
+    scrim: "rgba(10,9,3,0.90)" # dim layer for modals/alerts
+  dots:
+    active:
+      center: "#00BF63"
+      ring:   "#05A659"
+    inactive:
+      center: "#FF3131"
+      ring:   "#E72727"
+  glow:
+    green:  "#68E5AE"
+    purple: "#A99BF2"
+    gray:   "#B7B7B5"
+  premium:
+    logo_proxy_plus: "#A48208"
+
+gradients:
+  primary:
+    name: "primary.gradient"     # used across app (home and elsewhere)
+    type: radial
+    at: [0%, 0%]
+    stops: ["#FFFFFF","#FFFFFF","#F2FFFB","#FEFCF3","#FFFFFF","#FFFFFF"]
+  ring.green_purple:
+    name: "accent.ring"
+    type: radial
+    at: [0%, 0%]
+    stops: ["#10B981","#10B981","#8352F4"]
+  premium:
+    gold:
+      type: linear
+      angle: 180
+      stops: ["#A27F00","#CBB88C","#CBC4A9","#F0E5B7","#CBB88C","#A27F00"]
+    silver:
+      type: linear
+      angle: 180
+      stops: ["#1A1A5D","#6E7694","#979CD3","#CED9F3","#5D6686","#141446"]
+    platinum:
+      type: linear
+      angle: 180
+      stops: ["#7A5AF8","#E9E2FF","#DFF7F0","#F6F7F8","#E9E2FF","#7A5AF8"]
+
+typography:
+  families:
+    logo: ["Etna", "system-ui", "sans-serif"]
+    ui:   ["Rubik", "system-ui", "sans-serif"]
+  weights:
+    light: 300
+    regular: 400
+    medium: 500
+  styles:
+    body.base:
+      family: ui
+      weight: 400
+      size_px: 8.5            # 25.4 ÷ 3
+      line_px: 11.9           # ×1.4
+      track_px: 26.3          # 79 ÷ 3  (confirm this letter-spacing)
+    # We’ll specify per-element sizes later (your request), using these families/weights.
+
+radii:                       # all values already ÷3
+  tile.profile: 17.7         # 53 on 1080 (match cards & chat avatars)
+  input.field: 5.3           # 16 on 1080 (phone/password/empty info)
+  pill.small: 4.7            # 14 on 1080 (“share with us” input)
+  pill.medium: 8.7           # 26 on 1080 (Sign in button, etc.)
+  pill.large: 10.0           # 30 on 1080 (“Let’s play cards!”)
+  capsule.discovery: 7.3     # 22 on 1080 (Discover Proxy+)
+  group.whiteGradient: 15.0  # 45 on 1080 (Activate profile group)
+  premium.card: 5.3          # 16 on 1080 (gold/silver/platinum cards)
+  cta.freeTrial: 20.0        # 60 on 1080 (Start 7-day free trial)
+  button.danger: 16.7        # 50 on 1080 (Delete my account)
+  full: 9999
+
+strokes_px:                  # stroke widths after ÷3
+  onboarding.input: 1.0      # 3 on 1080
+  avatarPicker.ring: 4.0     # 12 on 1080 (green→purple circle)
+  auth.altButton: 1.7        # 5 on 1080 (Apple/Google box)
+  selector.pill: 2.3         # 7 on 1080 (Gallery/Camera; “Down to date”)
+  tile.profile.ring: 1.7     # 5 on 1080 (home tiles & big PFP in wave modal)
+  myProfile.doubleRing:
+    outer: 2.7               # 8 on 1080
+    inner: 2.7               # 8 on 1080 (green→purple gradient)
+  premium.entry: 5.0         # 15 on 1080 (gold border callout)
+  premium.planCard: 4.0      # 12 on 1080
+
+shadows:
+  # S1 — subtle under-card blur (white cards/inputs). Proposed from your ref images.
+  low:
+    layers:
+      - { x: 0, y: 8, blur: 28, spread: -12, color: "rgba(10,9,3,0.16)" }
+      - { x: 0, y: 2, blur: 6,  spread: -2,  color: "rgba(10,9,3,0.10)" }
+  # G2 — centered ambient glow behind tiles (color-tinted; very soft).
+  glow:
+    green:  { x: 0, y: 0, blur: 44, spread: 8, color: "rgba(104,229,174,0.35)" }
+    purple: { x: 0, y: 0, blur: 44, spread: 8, color: "rgba(169,155,242,0.35)" }
+    gray:   { x: 0, y: 0, blur: 44, spread: 8, color: "rgba(183,183,181,0.28)" }
+
+zIndex:
+  100: "base"
+  200: "floating"        # pills, toasts, sticky bars
+  300: "modal"           # sheets/dialogs + scrim
+  400: "system"          # global alerts, action sheets, nav overlays
