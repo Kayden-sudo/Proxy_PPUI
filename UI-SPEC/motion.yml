@@ -1,0 +1,180 @@
+# Motion spec for "Proxy" — phone UIs at 360 / 393 / 430 px portrait (see /UI-SPEC/meta.yml)
+# Audience: implementer (e.g., Claude Code) reading this repo cold.
+# Design intent:
+# - Default UI feel is snappy + premium without gimmicks.
+# - Lists/tiles enter in a subtle cascade.
+# - Overlays/bottom-sheets arrive softly (decelerate) and exit decisively (accelerate).
+# - Only the Paywall and Wave overlay get small, tasteful flourishes.
+# - Respect prefers-reduced-motion: fade-only, shorter, no blur/clip-path.
+
+defaults:
+  duration: 220                        # ms — base tempo for small UI moves
+  easing: "cubic-bezier(0.3, 0, 0.2, 1)"  # default curve (between Material "standard" and "decelerate")
+  stagger: 40                          # ms — sibling delay for list/grid cascades
+
+policy:
+  # === Option C baseline (chosen) ===
+  # Keep animations lightweight and GPU-friendly; allow minimal "softness" for overlays/sheets.
+  animatableProps:
+    - opacity
+    - transform            # translate / scale / rotate only (see constraints)
+    - color                # text color
+    - background-color
+    - border-color
+    - box-shadow           # use sparingly (not on scrolling lists)
+    - border-radius
+    - filter               # blur ONLY, capped (see constraints)
+  disallowedProps:
+    - top
+    - right
+    - bottom
+    - left
+    - width
+    - height
+    - margin
+    - padding
+    - outline
+    - letter-spacing
+    - line-height
+    - background-image     # gradients may be animated only via scoped exceptions below
+    - backdrop-filter
+    - clip-path            # allowed only via scoped exceptions + presets below
+    - filter:drop-shadow
+  constraints:
+    transform:
+      allowedFunctions: ["translate", "scale", "rotate"]
+    filter:
+      blurMaxPx: 4
+      allowedContexts: ["overlay", "bottom-sheet"]  # e.g., Wave overlay, Verify Phone, Paywall
+  prefersReduced:
+    # System "reduce motion" ON → shorten, remove cascade, avoid spatial transforms & heavy visuals
+    duration: 120
+    stagger: 0
+    easing: "cubic-bezier(0.2, 0, 0, 1)"
+    replace:
+      transformWith: "opacity"         # slide/scale → fade-only
+    disallow:
+      - filter
+      - clip-path
+      - box-shadow
+
+# === Scoped Option D exceptions (tasteful flourishes allowed ONLY here) ===
+exceptions:
+  paywall:
+    # Applies when opening the Proxy+ paywall (full-screen bottom sheet after "Discover Proxy+")
+    allowProps: ["clip-path", "background-position", "background-size", "opacity"]
+    notes: "Allow a gentle edge-reveal on enter and a slow gradient shift; do NOT animate gradients during scroll."
+  waveOverlay:
+    # Applies to the full-screen Wave overlay (white gradient ≈95% opacity covering the screen)
+    allowProps: ["background-position", "background-size", "opacity", "filter"]  # blur ≤ 4px
+    notes: "Allow a soft settle on enter; keep blur tiny (≤2–4px) and avoid any parallax."
+
+# === Named presets (reusable moves with intent labels) ===
+# Tip for implementer:
+# - Use these presets directly in components. They encode duration + easing choices so you don't guess.
+# - Do not mix layout-changing properties; use transforms/fades per the baseline policy.
+
+presets:
+  # ── Generic fades ─────────────────────────────────────────────────────────────
+  fade.in:
+    # Use: small UI bits appearing (labels, helper text, icons)
+    from: { opacity: 0 }
+    to:   { opacity: 1 }
+    duration: 180
+
+  fade.out:
+    # Use: small UI bits disappearing
+    from: { opacity: 1 }
+    to:   { opacity: 0 }
+    duration: 160
+
+  scale.pop:
+    # Use: subtle "pop" for tiny surfacing elements (chips, badges), not for full sheets
+    from: { opacity: 0, transform: "scale(0.96)" }
+    to:   { opacity: 1, transform: "scale(1.0)" }
+    duration: 200
+
+  # ── Lists & grids (Home tiles, people rows) ──────────────────────────────────
+  tile.cascadeIn:
+    # Use: Home grids, people tiles; trigger on screen entry. Keep stagger modest (40ms).
+    trigger: "load"
+    from: { opacity: 0, transform: "translateY(8px)" }
+    to:   { opacity: 1, transform: "translateY(0)" }
+    duration: 220
+    stagger: 40
+
+  # ── Buttons (all buttons: primary/secondary/tonal/ghost) ─────────────────────
+  button.press:
+    # Use: active/pressed state feedback (tap-down). Keep it quick and reversible.
+    trigger: "active"
+    from: { transform: "scale(1.0)" }
+    to:   { transform: "scale(0.98)" }
+    duration: 100
+    easing: "cubic-bezier(0.2, 0, 0, 1)"      # fast ease-out for responsiveness
+
+  # ── Bottom sheets (Verify Phone, Paywall base movement) ──────────────────────
+  sheet.enter:
+    # Use: any bottom sheet appearing from bottom edge (verify phone white section, paywall container)
+    trigger: "load"
+    from: { opacity: 0, transform: "translateY(24px)" }
+    to:   { opacity: 1, transform: "translateY(0)" }
+    duration: 240
+    easing: "cubic-bezier(0, 0, 0.2, 1)"      # decelerate on enter (arrive softly)
+    context: "bottom-sheet"
+
+  sheet.exit:
+    # Use: bottom sheet dismissal
+    trigger: "unload"
+    from: { opacity: 1, transform: "translateY(0)" }
+    to:   { opacity: 0, transform: "translateY(24px)" }
+    duration: 200
+    easing: "cubic-bezier(0.4, 0, 1, 1)"      # accelerate on exit (leave decisively)
+    context: "bottom-sheet"
+
+  # ── Overlays (Wave overlay) ──────────────────────────────────────────────────
+  overlay.wave.enter:
+    # Use: full-screen white gradient overlay on Wave receive
+    trigger: "load"
+    from: { opacity: 0, filter: "blur(2px)" }  # tiny blur allowed by baseline policy in overlay context
+    to:   { opacity: 0.95, filter: "blur(0px)" }
+    duration: 220
+    easing: "cubic-bezier(0, 0, 0.2, 1)"       # decelerate on enter
+    context: "overlay"
+
+  overlay.wave.exit:
+    # Use: dismissing the Wave overlay
+    trigger: "unload"
+    from: { opacity: 0.95, filter: "blur(0px)" }
+    to:   { opacity: 0, filter: "blur(2px)" }
+    duration: 200
+    easing: "cubic-bezier(0.4, 0, 1, 1)"       # accelerate on exit
+    context: "overlay"
+
+  # ── Paywall premium flourishes (SCOPED EXCEPTION) ───────────────────────────
+  paywall.reveal:
+    # Use: first-frame reveal of the premium sheet; subtle edge rounding relaxes into place
+    trigger: "load"
+    from: { opacity: 0, clip-path: "inset(8% 0% 0% 0% round 24px)" }
+    to:   { opacity: 1, clip-path: "inset(0% 0% 0% 0% round 24px)" }
+    duration: 260
+    easing: "cubic-bezier(0, 0, 0.2, 1)"       # decelerate on enter
+    exceptions: "paywall"
+
+  paywall.gradient.shift:
+    # Use: optional gentle background gradient shift on the premium band at open
+    trigger: "load"
+    from: { background-position: "50% 60%" }
+    to:   { background-position: "50% 50%" }
+    duration: 800
+    easing: "cubic-bezier(0.2, 0, 0, 1)"       # slow, luxe ease-out
+    exceptions: "paywall"
+
+# ── Context map (for orientation; not machine-consumed) ────────────────────────
+# Where to apply which preset:
+# - Loading screen: fade.in on logo/brand elements.
+# - Login / Settings / Profile / Chat: fade.in/out for small parts; button.press on all buttons.
+# - Home (grid): tile.cascadeIn for initial rows; avoid shadows during scroll.
+# - Verify Phone (bottom sheet): sheet.enter / sheet.exit for the rising white section.
+# - Wave received: overlay.wave.enter / overlay.wave.exit for the white gradient cover.
+# - Proxy+ paywall: sheet.enter / sheet.exit for the container + paywall.reveal + (optional) paywall.gradient.shift.
+
