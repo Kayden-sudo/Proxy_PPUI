@@ -1,0 +1,223 @@
+SAVE AS: UI-SPEC/routes/registry.yml
+project: Proxy
+breakpoints: [360, 393, 430]   # must match /UI-SPEC/meta.yml
+
+conventions:
+  # Where overlay reference PNGs will be stored for visual diffing.
+  # One PNG per breakpoint for any non-standard layer (scrim, dialog, sheet).
+  overlaysDirPerRoute: "routes/<route-id>/overlays/"
+  overlayFile: "<overlay-id>-<breakpoint>.png"   # e.g., wave-received-360.png
+
+routes:
+
+  # --------------------------- CORE FLOW ------------------------------------
+  - id: splash
+    path: /splash
+    kind: screen
+    purpose: Branded loading while app initializes (logo centered on grey bg with colored arcs).
+    entersFrom: app.launch
+    exitsTo: [auth.welcome | home]  # depends on auth state
+    notes: No user input. Short fade-in/out only.
+
+  - id: auth.welcome
+    path: /auth/welcome
+    kind: screen
+    purpose: Entry screen with branding, two promo profile cards, and CTAs.
+    shows: [Create account (primary), Sign in (link), Enter as guest (link)]
+    exitsTo: [auth.signUp.phone, auth.signIn, guest.gate]
+    overlays: {}   # none here
+
+  - id: auth.signIn
+    path: /auth/sign-in
+    kind: screen
+    purpose: Sign in with phone + password; or continue with Apple / Google.
+    exitsTo: [home]   # on success
+    slicesHint: [brandRow, form, oauthButtons, submitPrimary]
+    notes: Apple/Google buttons are OAuth handoffs (system sheets).
+
+  - id: auth.signUp.phone
+    path: /auth/sign-up/phone
+    kind: screen
+    purpose: Capture phone number (country code pill + input). Sends OTP.
+    exitsTo: [auth.signUp.verify]
+
+  - id: auth.signUp.verify
+    path: /auth/sign-up/verify
+    kind: screen
+    purpose: Enter 4–6 digit verification code (OTP) sent to phone.
+    exitsTo: [onboarding.password]
+
+  - id: onboarding.password
+    path: /onboarding/set-password
+    kind: screen
+    purpose: Create password (single field + continue chevron).
+    exitsTo: [onboarding.name]
+
+  - id: onboarding.name
+    path: /onboarding/name
+    kind: screen
+    purpose: Enter display name (used on tiles/chat).
+    exitsTo: [onboarding.age]
+
+  - id: onboarding.age
+    path: /onboarding/age
+    kind: screen
+    purpose: Enter age (number field).
+    exitsTo: [onboarding.photo]
+
+  - id: onboarding.photo
+    path: /onboarding/photo
+    kind: screen
+    purpose: Add profile picture (large circular add target + Gallery/Camera).
+    exitsTo: [home]
+    notes: Camera/Photo permissions requested Just-In-Time when this screen is used.
+
+  - id: home
+    path: /home
+    kind: screen
+    purpose: Main feed of nearby people tiles, prompt bar, mood buttons, and Open-Status bar.
+    shows:
+      - header: brand lockup left + “prompt” text field to edit one-liner
+      - grid: 3-column people tiles, near first row highlighted, far tiles dimmed
+      - moodButtons: [Down to make friends (filled green), Down to date (outlined purple)]
+      - openStatusBar: [status dot, ON/OFF toggle, Set time]
+      - bottomTabs: [chat, home (active), profile]
+    exitsTo: [chat.list, profile, home.emptyOverlay]
+    overlays:
+      home-empty:
+        360: "routes/home/overlays/home-empty-360.png"
+        393: "routes/home/overlays/home-empty-393.png"
+        430: "routes/home/overlays/home-empty-430.png"
+    notes: On empty/low-density case, show scrim overlay (see overlays/home-empty-*).
+
+  - id: chat.list
+    path: /chat
+    kind: screen
+    purpose: List of active chats with distance badges; chat expiry notice; open-status bar.
+    exitsTo: [home, profile]
+    notes: Bottom tab = chat (active).
+
+  - id: profile
+    path: /profile
+    kind: screen
+    purpose: User profile (avatar with dual-color ring, one-liner editor, Proxy+ card).
+    actions: [Edit my profile, Discover Proxy+, gear icon → settings]
+    exitsTo: [settings, premium.sheet]
+    notes: Bottom tab = profile (active).
+
+  - id: settings
+    path: /settings
+    kind: screen
+    purpose: App settings and legal links; Log out; Delete my account.
+    exitsTo: [profile, account.deleteConfirm]
+    notes: Simple list screen with section headers.
+
+  # -------------------------- APPROVED EXTRAS -------------------------------
+  # (B / Hotspots intentionally excluded per your decision.)
+
+  # A — Wave received dialog (full-screen scrim + card)
+  - id: wave.received
+    path: /wave/received
+    kind: dialog
+    purpose: Full-screen overlay when someone waves at you.
+    primaryAction: "Start a chat, meet when ready"
+    secondaryAction: "Dismiss"
+    overlays:
+      wave-received:
+        360: "routes/wave.received/overlays/wave-received-360.png"
+        393: "routes/wave.received/overlays/wave-received-393.png"
+        430: "routes/wave.received/overlays/wave-received-430.png"
+    entersFrom: [push-notification, foreground-event]
+    exitsTo: [chat.list, home]
+    motion: uses.motion.presets.dialog.enterExit
+
+  # C — Guest gate (login required) when a guest tries protected actions
+  - id: guest.gate
+    path: /guest-gate
+    kind: dialog
+    purpose: Gentle modal explaining guests can browse but must sign in to be visible / toggle Open-Status.
+    primaryAction: "Create account"
+    secondaryAction: "Sign in"
+    overlays:
+      guest-gate:
+        360: "routes/guest.gate/overlays/guest-gate-360.png"
+        393: "routes/guest.gate/overlays/guest-gate-393.png"
+        430: "routes/guest.gate/overlays/guest-gate-430.png"
+
+  # D — Offline / connectivity banner or sheet
+  - id: system.offline
+    path: /system/offline
+    kind: banner
+    purpose: Non-blocking banner when network is unavailable; retries in background.
+    overlays: {}   # small banner; overlay reference not required
+    appearsOn: [home, chat.list, profile]
+
+  # E — Location permission gate (policy: request immediately after auth/guest entry)
+  - id: permission.location
+    path: /permission/location
+    kind: sheet
+    purpose: Pre-permission explainer + “Enable location” → triggers system dialog.
+    overlays:
+      location-permission:
+        360: "routes/permission.location/overlays/location-permission-360.png"
+        393: "routes/permission.location/overlays/location-permission-393.png"
+        430: "routes/permission.location/overlays/location-permission-430.png"
+    entersFrom: [auth.signIn, onboarding.photo, guest.gate.return]
+    exitsTo: [home]
+    notes: If denied, route back to Welcome (can’t enter Home per policy).
+
+  # F — Account deletion confirm (from Settings)
+  - id: account.deleteConfirm
+    path: /account/delete-confirm
+    kind: dialog
+    purpose: Destructive confirm with explicit copy and secondary “Cancel”.
+    overlays:
+      delete-confirm:
+        360: "routes/account.deleteConfirm/overlays/delete-confirm-360.png"
+        393: "routes/account.deleteConfirm/overlays/delete-confirm-393.png"
+        430: "routes/account.deleteConfirm/overlays/delete-confirm-430.png"
+    exitsTo: [settings | app.exit]
+
+  # G — Legal pages (in-app)
+  - id: legal.terms
+    path: /legal/terms
+    kind: screen
+    purpose: Terms of Service (linked from Welcome + Settings).
+  - id: legal.privacy
+    path: /legal/privacy
+    kind: screen
+    purpose: Privacy Policy (linked from Welcome + Settings).
+  - id: legal.cookies
+    path: /legal/cookies
+    kind: screen
+    purpose: Cookies Policy (linked from Welcome).
+
+  # H — Premium sheet → full-screen paywall (Proxy+)
+  - id: premium.sheet
+    path: /premium
+    kind: sheet
+    purpose: Bottom sheet that rises from the bottom when user taps “Discover Proxy+”.
+    escalatesTo: premium.paywall   # animates up into full screen
+    overlays:
+      premium-sheet:
+        360: "routes/premium/overlays/premium-sheet-360.png"
+        393: "routes/premium/overlays/premium-sheet-393.png"
+        430: "routes/premium/overlays/premium-sheet-430.png"
+    motion: presets.proxyPlus.sheetToFull   # see motion.yml
+  - id: premium.paywall
+    path: /premium/paywall
+    kind: screen
+    purpose: Full paywall with 3 plans + “Start 7-day free trial – then $9.99 total” CTA.
+    exitsTo: [profile]
+    notes: Uses gradients.premium.* for borders (gold/silver/platinum).
+
+  # I — OAuth handoff routes (in case of in-app webview fallback)
+  - id: oauth.apple
+    path: /oauth/apple
+    kind: system
+    purpose: Handoff to Apple Sign-in (native/system).
+  - id: oauth.google
+    path: /oauth/google
+    kind: system
+    purpose: Handoff to Google Sign-in (native/system).
+
