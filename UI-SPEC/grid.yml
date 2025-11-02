@@ -1,0 +1,39 @@
+SAVE AS: /UI-SPEC/grid.yml
+columns: 12
+
+gutter:
+  "360": 12
+  "393": 12
+  "430": 12
+
+# Full-bleed means the content container equals the screen width at each breakpoint.
+container:
+  policy: full-bleed
+  widths:
+    "360": 360
+    "393": 393
+    "430": 430
+
+# Base breathing room from the screen edges.
+# (On devices with notches/home bars, the OS safe-area is added on top of these.)
+pagePadding:
+  "360": { top: 24, right: 16, bottom: 24, left: 16 }
+  "393": { top: 24, right: 16, bottom: 24, left: 16 }
+  "430": { top: 24, right: 16, bottom: 24, left: 16 }
+
+safeArea:
+  policy: runtime               # Use OS-provided insets; do not hardcode extra px
+  notes: "Base paddings remain the visual baseline; OS adds notch/home-indicator insets."
+
+# Elements that intentionally ignore left/right padding and run edge-to-edge
+edgeToEdge:
+  - id: global_backgrounds
+    desc: "Grey background layer and white gradient layer run full-bleed on all routes."
+  - id: home_pfp_edge_touch
+    desc: "On the home/landing screen, the two angled PFP cards may touch the left/right edges."
+  - id: verify_phone_bottom_sheet
+    desc: "On phone verification, a white bottom section rises from the bottom edge and spans full width."
+  - id: wave_overlay_fullscreen
+    desc: "Wave-received overlay uses a 95% opacity white gradient covering the entire screen."
+  - id: proxy_plus_paywall_fullscreen
+    desc: "Proxy+ paywall slides up from the bottom edge and covers the whole screen."
