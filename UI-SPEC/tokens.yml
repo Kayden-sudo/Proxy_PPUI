@@ -1,45 +1,58 @@
-# UI-SPEC/tokens.yml
-version: 1
-info:
-  scale_reference: "Design built at 1080×1920; runtime target 360×640 (all sizes ÷3)."
-  brand_name: "Proxy"
+meta:
+  description: >
+    Proxy / PPUI — design tokens for a mobile-only app (portrait).
+    All values are for a 360×640 baseline.
+  baseline_frame: "360×640"
+  color_space: sRGB
+  typefaces:
+    # Etna is only used for the 'Proxy' word in the logo.
+    logo_wordmark: "Etna Sans Serif"
+    body: "Rubik"   # ONLY these weights: 300 (Light), 400 (Regular), 500 (Medium)
 
 colors:
-  text:
-    primary: "#0A0903"        # body text
-    secondary: "#767674"       # subdued/secondary text
-  border:
-    secondary: "#767674"
+  # --- Brand palette ---------------------------------------------------------
+  brand:
+    green:      "#10B981"   # main green
+    green_alt:  "#27A279"   # darker green (occasional accents/labels)
+    purple:     "#8352F4"   # main purple
+    purple_alt: "#6439C6"   # deeper purple swatch used on some tags
+    black:      "#0A0903"   # UI "black" for headings, primary CTAs
+    plus_logo:  "#A48208"   # 'Proxy+' mark (Premium context)
+
+  # --- Neutral surfaces & text ----------------------------------------------
   surface:
-    app: "#F3F4F6"             # default in-app background
-    white: "#FFFFFF"
+    canvas.primary:   "#F3F4F6"  # default in-app page background
+    canvas.secondary: "#FFFFFF"  # some screens/cards use plain white
+  text:
+    primary:   "#0A0903"         # default body/heading color
+    secondary: "#767674"         # subdued text + subtle dividers/borders
+  border:
+    primary:   "#0A0903"
+    secondary: "#767674"
+
+  # --- Status dots (profile availability) -----------------------------------
+  statusDot:
+    active:     { fill: "#00BF63", ring: "#05A659" }  # “profile activated”
+    inactive:   { fill: "#FF3131", ring: "#E72727" }  # “profile inactive”
+
+  # --- Dimmed overlay behind modals (mobile only) ---------------------------
   overlay:
-    scrim: "rgba(10,9,3,0.90)" # dim layer for modals/alerts
-  dots:
-    active:
-      center: "#00BF63"
-      ring:   "#05A659"
-    inactive:
-      center: "#FF3131"
-      ring:   "#E72727"
-  glow:
-    green:  "#68E5AE"
-    purple: "#A99BF2"
-    gray:   "#B7B7B5"
-  premium:
-    logo_proxy_plus: "#A48208"
+    scrim: "rgba(10,9,3,0.90)"   # same hue as UI black @ 90%
 
 gradients:
-  primary:
-    name: "primary.gradient"     # used across app (home and elsewhere)
+  # Soft background used on the home/hero & a few other screens
+  primary.gradient:
     type: radial
-    at: [0%, 0%]
+    at: "0% 0%"
     stops: ["#FFFFFF","#FFFFFF","#F2FFFB","#FEFCF3","#FFFFFF","#FFFFFF"]
-  ring.green_purple:
-    name: "accent.ring"
+
+  # Ring/outline blend used for: profile upload circle & profile header double-ring
+  accent.greenPurple:
     type: radial
-    at: [0%, 0%]
+    at: "0% 0%"
     stops: ["#10B981","#10B981","#8352F4"]
+
+  # Premium plan cards (behind a translucent white overlay layer)
   premium:
     gold:
       type: linear
@@ -55,61 +68,169 @@ gradients:
       stops: ["#7A5AF8","#E9E2FF","#DFF7F0","#F6F7F8","#E9E2FF","#7A5AF8"]
 
 typography:
-  families:
-    logo: ["Etna", "system-ui", "sans-serif"]
-    ui:   ["Rubik", "system-ui", "sans-serif"]
-  weights:
-    light: 300
-    regular: 400
-    medium: 500
-  styles:
-    body.base:
-      family: ui
-      weight: 400
-      size_px: 8.5            # 25.4 ÷ 3
-      line_px: 11.9           # ×1.4
-      track_px: 26.3          # 79 ÷ 3  (confirm this letter-spacing)
-    # We’ll specify per-element sizes later (your request), using these families/weights.
+  # Base body style (from Canva body 25.4 / 79 letter / 1.4 line → ÷3)
+  body.base:
+    family: "Rubik"
+    weight: 400
+    size: 8.5          # px
+    lineHeight: 11.9   # px (1.4×)
+    letterSpacing: 26.3  # Canva “79” → ~26.3 @ 360×640
 
-radii:                       # all values already ÷3
-  tile.profile: 17.7         # 53 on 1080 (match cards & chat avatars)
-  input.field: 5.3           # 16 on 1080 (phone/password/empty info)
-  pill.small: 4.7            # 14 on 1080 (“share with us” input)
-  pill.medium: 8.7           # 26 on 1080 (Sign in button, etc.)
-  pill.large: 10.0           # 30 on 1080 (“Let’s play cards!”)
-  capsule.discovery: 7.3     # 22 on 1080 (Discover Proxy+)
-  group.whiteGradient: 15.0  # 45 on 1080 (Activate profile group)
-  premium.card: 5.3          # 16 on 1080 (gold/silver/platinum cards)
-  cta.freeTrial: 20.0        # 60 on 1080 (Start 7-day free trial)
-  button.danger: 16.7        # 50 on 1080 (Delete my account)
-  full: 9999
+  # Heading used in onboarding / section titles (two weights)
+  heading.h1.regular: { family: "Rubik", weight: 400, size: 10, lineHeight: 14, letterSpacing: 13.3 }
+  heading.h1.medium:  { family: "Rubik", weight: 500, size: 10, lineHeight: 14, letterSpacing: 13.3 }
 
-strokes_px:                  # stroke widths after ÷3
-  onboarding.input: 1.0      # 3 on 1080
-  avatarPicker.ring: 4.0     # 12 on 1080 (green→purple circle)
-  auth.altButton: 1.7        # 5 on 1080 (Apple/Google box)
-  selector.pill: 2.3         # 7 on 1080 (Gallery/Camera; “Down to date”)
-  tile.profile.ring: 1.7     # 5 on 1080 (home tiles & big PFP in wave modal)
-  myProfile.doubleRing:
-    outer: 2.7               # 8 on 1080
-    inner: 2.7               # 8 on 1080 (green→purple gradient)
-  premium.entry: 5.0         # 15 on 1080 (gold border callout)
-  premium.planCard: 4.0      # 12 on 1080
+  # Buttons we re-use verbatim
+  button.primary:   { family: "Rubik", weight: 500, size: 9.3, lineHeight: 13.0 } # e.g., “Create account”
+  button.secondary: { family: "Rubik", weight: 400, size: 8,   lineHeight: 11.2 } # “Down to date / make friends”
+
+  notes: >
+    Other text sizes vary per element in the design. When mapping each screen,
+    take the Canva size and divide by 3; use only Rubik Light(300)/Regular(400)/Medium(500).
+
+spacing:
+  # Coarse spacing scale for paddings/margins
+  none: 0
+  xs:   4
+  sm:   8
+  md:   12
+  lg:   16
+  xl:   24
+  "2xl": 32
+  "3xl": 40
+
+radii:
+  # Corner radii (already ÷3). Names map to actual UI elements.
+  avatar.square: 17.7     # 53 — small profile tiles & chat avatars
+  chip:         4         # 12 — black mini labels (e.g., time badges)
+  input:        5.3       # 16 — text fields in Sign in / onboarding blanks
+  pill.sm:      7.3       # 22 — small pills (e.g., “Discover Proxy+”)
+  pill.md:      8.7       # 26 — outlined purple/green CTAs & OAuth cards
+  pill.8_3:     8.3       # 25 — “Start a chat, meet when ready”
+  pill.lg:      15        # 45 — big white gradient bar & “Create account”
+  pill.16_7:    16.7      # 50 — “Delete my account”
+  pill.20:      20        # 60 — long “Start 7-day free trial…”
+  toast:        8.7       # 26 — black overlay message dialog
+  feedback.input: 4.7     # 14 — inner input inside the overlay feedback box
+
+strokes:
+  # Border widths (÷3). Each name = where it’s used.
+  input.onboarding:         1.0  # 3 — initial data text boxes
+  avatar.uploadRing:        4.0  # 12 — big circle around profile upload
+  oauth.card:               1.7  # 5 — Apple/Google light cards
+  selector.default:         2.3  # 7 — Gallery / Camera / outlined CTAs
+  profileTile.ring:         1.7  # 5 — green/purple tile borders on home grid
+  waveModal.profileRing:    1.7  # 5 — ring around avatar inside wave modal
+  waveModal.primaryCTA:     2.3  # 7 — “Start a chat…” outline
+  profileHeader.doubleOuter: 2.7 # 8 — my-profile outer ring
+  profileHeader.doubleInner: 2.7 # 8 — my-profile inner ring (accent gradient)
+  premium.entryCard:        5.0  # 15 — golden promo card on Profile
+  premium.planCard:         4.0  # 12 — plan selection cards (Gold/Silver/Platinum)
 
 shadows:
-  # S1 — subtle under-card blur (white cards/inputs). Proposed from your ref images.
-  low:
-    layers:
-      - { x: 0, y: 8, blur: 28, spread: -12, color: "rgba(10,9,3,0.16)" }
-      - { x: 0, y: 2, blur: 6,  spread: -2,  color: "rgba(10,9,3,0.10)" }
-  # G2 — centered ambient glow behind tiles (color-tinted; very soft).
-  glow:
-    green:  { x: 0, y: 0, blur: 44, spread: 8, color: "rgba(104,229,174,0.35)" }
-    purple: { x: 0, y: 0, blur: 44, spread: 8, color: "rgba(169,155,242,0.35)" }
-    gray:   { x: 0, y: 0, blur: 44, spread: 8, color: "rgba(183,183,181,0.28)" }
+  # S1: subtle drop under white cards/inputs (see Sign in fields)
+  card.low:
+    type: drop
+    x: 0
+    y: 6
+    blur: 24
+    spread: 0
+    color: "rgba(10,9,3,0.15)"
+
+  # G2: centered glow behind profile tiles; color should match the tile ring.
+  glow.profile.green:  { type: drop, x: 0, y: 0, blur: 48, spread: 0, color: "rgba(104,229,174,0.40)" } # ~#68E5AE @ 40%
+  glow.profile.purple: { type: drop, x: 0, y: 0, blur: 48, spread: 0, color: "rgba(169,155,242,0.40)" } # ~#A99BF2 @ 40%
+  glow.profile.gray:   { type: drop, x: 0, y: 0, blur: 48, spread: 0, color: "rgba(183,183,181,0.40)" } # ~#B7B7B5 @ 40%
 
 zIndex:
-  100: "base"
-  200: "floating"        # pills, toasts, sticky bars
-  300: "modal"           # sheets/dialogs + scrim
-  400: "system"          # global alerts, action sheets, nav overlays
+  # Layering guidance (mobile):
+  base:       10   # normal content (lists, tiles, inputs, buttons)
+  components: 20   # sticky nav, floating primary CTAs, toggles
+  overlays:   30   # toasts, in-page banners, bottom sheets, scrim below dialogs
+  dialogs:    40   # modal dialogs (wave prompt, premium selector)
+
+# -------------------------- SEMANTIC USAGE NOTES -----------------------------
+# Use these quick rules when wiring screens. If a property below says
+# “use …”, it points to the token group above.
+
+usage:
+  home.grid.tile:
+    imageShape:
+      radius: radii.avatar.square
+      border:
+        width: strokes.profileTile.ring
+        color: [colors.brand.green, colors.brand.purple]  # choose per tile
+      shadow: [shadows.glow.profile.green, shadows.glow.profile.purple]       # choose to match ring
+    text:
+      color: colors.text.primary
+      base: typography.body.base
+
+  onboarding.inputs:
+    field:
+      radius: radii.input
+      border:
+        width: strokes.input.onboarding
+        color: colors.border.secondary
+      shadow: shadows.card.low
+      text:   typography.body.base
+
+  buttons:
+    primary.black:      # e.g., “Create account”, “Sign in”, long trial CTA
+      fill:   colors.brand.black
+      text:   "#FFFFFF"
+      radius: [radii.pill.lg, radii.pill.md, radii.pill.20]  # pick per design
+      type:   typography.button.primary
+    secondary.outlined: # “Down to date / Down to make friends”
+      fill:   "transparent"
+      ring:   colors.brand.purple
+      text:   colors.text.primary
+      radius: radii.pill.md
+      type:   typography.button.secondary
+    discover.proxyPlus: # black button inside the gold promo card
+      fill:   colors.brand.black
+      text:   "#FFFFFF"
+      radius: radii.pill.sm
+      type:   typography.button.secondary
+
+  profile.header:
+    avatarDoubleRing:
+      outer:
+        width: strokes.profileHeader.doubleOuter
+        color: colors.border.primary
+      innerGradient: gradients.accent.greenPurple
+      widthInner: strokes.profileHeader.doubleInner
+
+  dialogs.wave:
+    scrim:  colors.overlay.scrim
+    cardRadius: radii.toast
+    avatarRing: strokes.waveModal.profileRing
+    primaryCTA:
+      outlineWidth: strokes.waveModal.primaryCTA
+      radius: radii.pill.8_3
+
+  premium:
+    proxyPlusLogoColor: colors.brand.plus_logo
+    entryPromoCard:     # gold-bordered white translucent box on Profile page
+      outerBorderWidth: strokes.premium.entryCard
+      outerBorderColor: gradients.premium.gold
+      innerOverlay:
+        fill: "#FFFFFFE6"   # 90% white; sits on top of the gold gradient
+        radius: radii.input
+    plans:              # three cards; each sits on its gradient with 90% white overlay
+      cardRadius: radii.input
+      borderWidth: strokes.premium.planCard
+      variants:
+        gold:     gradients.premium.gold
+        silver:   gradients.premium.silver
+        platinum: gradients.premium.platinum
+
+  oauth.cards:
+    radius: radii.pill.md
+    borderWidth: strokes.oauth.card
+    borderColor: colors.border.secondary
+    fill: "#FFFFFF"
+    shadow: shadows.card.low
+
+notes:
+  - Focus rings are intentionally NOT used (touch/mobile only).
+  - Keep Rubik weights to 300/400/500 only (Light/Regular/Medium).
