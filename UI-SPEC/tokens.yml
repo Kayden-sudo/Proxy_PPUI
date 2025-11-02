@@ -52,7 +52,7 @@ gradients:
     at: "0% 0%"
     stops: ["#10B981","#10B981","#8352F4"]
 
-  # Premium plan cards (behind a translucent white overlay layer)
+  # Premium plan cards (behind a 90% opacity white overlay layer)
   premium:
     gold:
       type: linear
@@ -234,3 +234,4 @@ usage:
 notes:
   - Focus rings are intentionally NOT used (touch/mobile only).
   - Keep Rubik weights to 300/400/500 only (Light/Regular/Medium).
+
