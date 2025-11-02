@@ -1,7 +1,7 @@
-﻿project: "Proxy_app"
+project: "Proxy"
 units: px
 colorSpace: sRGB
-breakpoints: [430, 393, 360]
+breakpoints: [360, 393, 430]
 coordSystem:
   origin: top-left
   axis: { x: "→", y: "↓" }
