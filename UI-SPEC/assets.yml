@@ -1,0 +1,33 @@
+SAVE AS: /UI-SPEC/assets.yml
+# Catalog of visual assets used by the app.
+# Notes aim to brief the future implementer reading this repo cold.
+
+- id: logo_mark_black
+  type: svg
+  path: UI-SPEC/assets/logo/proxy_mark_black.svg
+  intrinsic: [1440, 810]     # SVG viewBox (w,h)
+  notes: "Symbol only, mono. Safe to tint from tokens on light backgrounds (e.g., headers, nav, small badges)."
+
+- id: logo_mark_color
+  type: svg
+  path: UI-SPEC/assets/logo/proxy_mark_color.svg
+  intrinsic: [1440, 810]
+  notes: "Symbol only with baked brand colors (purple/green/black). Use as-is on light backgrounds (e.g., splash/loading); do not tint."
+
+- id: logo_lockup_black
+  type: svg
+  path: UI-SPEC/assets/logo/proxy_lockup_black.svg
+  intrinsic: [1440, 810]
+  notes: "Symbol + 'Proxy' wordmark in mono. Use for standard headers/heroes on light backgrounds."
+
+- id: logo_lockup_gold
+  type: svg
+  path: UI-SPEC/assets/logo/proxy_lockup_gold.svg
+  intrinsic: [1440, 810]
+  notes: "Premium lockup (Proxy+). Gold is baked (matches premium token #A48208). Use on paywall/premium only; do not tint."
+
+- id: logo_word_black
+  type: svg
+  path: UI-SPEC/assets/logo/proxy_word_black.svg
+  intrinsic: [1440, 810]
+  notes: "Word-only 'Proxy' (Etna). Use when the symbol is shown elsewhere, or where a compact wordmark is preferable."
