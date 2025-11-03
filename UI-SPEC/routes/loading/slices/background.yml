@@ -2,9 +2,9 @@ sliceId: "loading.background"
 route: "/loading"
 
 overlays:
-  360: "routes/loading/overlays/loading-360.png"
-  393: "routes/loading/overlays/loading-393.png"
-  430: "routes/loading/overlays/loading-430.png"
+  360: "UI-SPEC/routes/loading/overlays/loading-360.png"
+  393: "UI-SPEC/routes/loading/overlays/loading-393.png"
+  430: "UI-SPEC/routes/loading/overlays/loading-430.png"
 
 layout:
   container: viewport
