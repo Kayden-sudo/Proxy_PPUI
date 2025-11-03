@@ -1,0 +1,38 @@
+sliceId: "loading.logoArc"
+route: "/loading"
+
+overlays:
+  360: "routes/loading/overlays/loading-logo-360.png"
+  393: "routes/loading/overlays/loading-logo-393.png"
+  430: "routes/loading/overlays/loading-logo-430.png"
+
+layout:
+  container: viewport
+  columns: 12
+  gutter: 0
+  padding: { top: 0, right: 0, bottom: 0, left: 0 }
+
+elements:
+  - id: "logo"
+    kind: image
+    box:
+      360: { x: 133.567, y: 274.567, w: 93.167, h: 86.633 }
+      393: { x: 145.810, y: 299.735, w: 101.707, h: 94.575 }
+      430: { x: 159.538, y: 327.955, w: 111.282, h: 103.479 }
+    colors: { fg: none, bg: none, border: none }
+    borders: { width: 0, style: solid, radius: 0 }
+    shadow: none
+    spacing: { margin: { t:0, r:0, b:0, l:0 }, padding: { t:0, r:0, b:0, l:0 } }
+    content: "Proxy mark (colored arc) — asset id: proxy_mark_color"
+    states: {}
+    motion: null
+    notes: "Source asset path: UI-SPEC/assets/logo/proxy_mark_color.svg.svg"
+
+a11y:
+  contrast: "n/a (image-only symbol on #F3F4F6)"
+  keyboard: "No interactive elements on this slice"
+  reducedMotion: "No motion on this slice"
+
+acceptance:
+  breakpoints: [360, 393, 430]
+  overlayTolerancePercent: 0.10
