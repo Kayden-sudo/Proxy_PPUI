@@ -1,1 +1,14 @@
+route: "/welcome-screen"
+
+overlays:
+  "360": "UI-SPEC/routes/welcome-screen/overlays/welcome-360.png"
+  "393": "UI-SPEC/routes/welcome-screen/overlays/welcome-393.png"
+  "430": "UI-SPEC/routes/welcome-screen/overlays/welcome-430.png"
+
+slices:
+  - background
+  - logo-mark
+  - subtitle
+  - wordmark
+  # next: left-card, right-card, legal, cta-primary, links-secondary
 
