@@ -1,18 +1,9 @@
 slices:
-  - id: "loading.background"
-    overlays:
-      360: "UI-SPEC/routes/loading/overlays/loading-360.png"
-      393: "UI-SPEC/routes/loading/overlays/loading-393.png"
-      430: "UI-SPEC/routes/loading/overlays/loading-430.png"
-    note: "Full-page overlay; background is solid #F3F4F6"
+  - id: background     # keep if present; draws the plain bg
+  - id: logo           # centered colored mark
 
-  - id: "loading.logoArc"
-    overlays:
-      360: "UI-SPEC/routes/loading/overlays/loading-360.png"
-      393: "UI-SPEC/routes/loading/overlays/loading-393.png"
-      430: "UI-SPEC/routes/loading/overlays/loading-430.png"
-    note: "Full-page overlay reused to verify logo placement"
-
-acceptance:
-  breakpoints: [360, 393, 430]
-  overlayTolerancePercent: 0.10
+# Visual diff overlays (exported from Canva, at 1:1)
+overlays:
+  360: "overlays/loading-360.png"
+  393: "overlays/loading-393.png"
+  430: "overlays/loading-430.png"
