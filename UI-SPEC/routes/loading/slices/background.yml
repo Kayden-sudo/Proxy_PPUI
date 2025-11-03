@@ -23,11 +23,12 @@ elements:
     borders: { width: 0, style: solid, radius: 0 }
     shadow: none
     spacing: { margin: { t:0, r:0, b:0, l:0 }, padding: { t:0, r:0, b:0, l:0 } }
-    content: ""  # full-bleed background; no text
+    content: ""
     states: {}
+    notes: "Background must fill the entire viewport at runtime. If device height differs from canonical, extend to full height."
 
 a11y:
-  contrast: ">= 4.5:1 for body text, >= 3:1 for large text (no text on this slice)"
+  contrast: ">= 4.5:1 for body text, >= 3:1 for large text (no text here)"
   keyboard: "No focus targets on this slice"
   reducedMotion: "No motion on this slice"
 
