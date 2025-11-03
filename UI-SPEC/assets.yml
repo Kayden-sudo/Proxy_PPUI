@@ -81,6 +81,14 @@
   intrinsic: [1440, 810]
   notes: "Bottom tab — Profile. Same color policy as other tabs."
 
+# ── BUTTONS (add files under /UI-SPEC/assets/buttons/) ────────────────────────────
+  
+  - id: "cta.create.acc"
+  type: svg
+  path: "UI-SPEC/assets/buttons/create.acc.svg"
+  intrinsic: [295.0, 46.6]   # proposed: match the 430 box; replace with the SVG's exact viewBox if different
+  notes: "Primary CTA (Create account) with integrated notch + label; text outlined; native colors; reused across breakpoints."
+
 # ── SOFT BLURS (add files under /UI-SPEC/assets/blob/) ────────────────────────────
 
   - id: "blob.green.v1"
