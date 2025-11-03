@@ -30,7 +30,7 @@ elements:
     spacing: { margin:{t:0,r:0,b:0,l:0}, padding:{t:0,r:0,b:0,l:0} }
     content: "Proxy wordmark (brand image)"
     states: {}
-    motion: none
+    motion: { trigger: load, from:{opacity:1}, to:{opacity:1}, duration:0, easing:"cubic-bezier(0,0,1,1)", delay:0 }
     notes: "Use the brand wordmark asset in native color; no filters or transforms."
 
 a11y:
