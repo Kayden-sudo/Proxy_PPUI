@@ -1,0 +1,18 @@
+slices:
+  - id: "loading.background"
+    overlays:
+      360: "routes/loading/overlays/loading-bg-360.png"
+      393: "routes/loading/overlays/loading-bg-393.png"
+      430: "routes/loading/overlays/loading-bg-430.png"
+    note: "Solid #F3F4F6 background"
+
+  - id: "loading.logoArc"
+    overlays:
+      360: "routes/loading/overlays/loading-logo-360.png"
+      393: "routes/loading/overlays/loading-logo-393.png"
+      430: "routes/loading/overlays/loading-logo-430.png"
+    note: "Centered colored arc logo"
+
+acceptance:
+  breakpoints: [360, 393, 430]
+  overlayTolerancePercent: 0.10
