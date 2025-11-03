@@ -1,0 +1,99 @@
+sliceId: "left-card"
+route: "/welcome-screen"
+
+overlays:
+  "360": "UI-SPEC/routes/welcome-screen/overlays/welcome-360.png"
+  "393": "UI-SPEC/routes/welcome-screen/overlays/welcome-393.png"
+  "430": "UI-SPEC/routes/welcome-screen/overlays/welcome-430.png"
+
+layout:
+  container: { "360": 360, "393": 393, "430": 430 }
+  columns: 12
+  gutter: 0
+  padding:
+    "360": { top:0, right:0, bottom:0, left:0 }
+    "393": { top:0, right:0, bottom:0, left:0 }
+    "430": { top:0, right:0, bottom:0, left:0 }
+
+elements:
+  # Stacking rule: element order = z-order (bottom → top)
+  - id: "blob-left-ambient"
+    kind: image
+    asset: "blob.green.v1"
+    box:
+      "360": { x: 4.7,  y: 244.9, w: 121.6, h: 121.6 }
+      "393": { x: 8.5,  y: 271.8, w: 128.7, h: 128.7 }
+      "430": { x: 10.6, y: 295.8, w: 137.7, h: 137.7 }
+    typeStyle: { family: "—", weight: 400, size: 0, line: 0, track: 0 }
+    colors: { fg: "none", bg: "none" }
+    borders: { width: 0, style: solid, radius: 0 }
+    shadow: none
+    spacing: { margin:{t:0,r:0,b:0,l:0}, padding:{t:0,r:0,b:0,l:0} }
+    content: "Decorative green blur; raster; no tint"
+    states: {}
+    motion: { trigger: load, from:{opacity:1}, to:{opacity:1}, duration:0, easing:"cubic-bezier(0,0,1,1)", delay:0 }
+    notes: "No rotation."
+
+  - id: "card-contour"
+    kind: card
+    box:
+      "360": { x: 20.6, y: 255.2, w: 93.6,  h: 97.6 }
+      "393": { x: 22.5, y: 278.7, w: 102.1, h: 106.5 }
+      "430": { x: 24.6, y: 304.9, w: 111.8, h: 116.5 }
+    typeStyle: { family: "—", weight: 400, size: 0, line: 0, track: 0 }
+    colors: { fg: "none", bg: "none", border: "#10B981" }
+    borders: { width: 2, style: solid, radius: 20 }
+    shadow: none
+    spacing: { margin:{t:0,r:0,b:0,l:0}, padding:{t:0,r:0,b:0,l:0} }
+    content: ""
+    states: {}
+    motion: { trigger: load, from:{opacity:1}, to:{opacity:1}, duration:0, easing:"cubic-bezier(0,0,1,1)", delay:0 }
+    notes: "Rotate −6.5° around element center."
+
+  - id: "photo"
+    kind: image
+    # inset by 2 px inside the contour on all sides
+    box:
+      "360": { x: 22.6, y: 257.2, w: 89.6,  h: 93.6 }
+      "393": { x: 24.5, y: 280.7, w: 98.1,  h: 102.5 }
+      "430": { x: 26.6, y: 306.9, w: 107.8, h: 112.5 }
+    typeStyle: { family: "—", weight: 400, size: 0, line: 0, track: 0 }
+    colors: { fg: "none", bg: "none" }
+    borders: { width: 0, style: solid, radius: 20 }
+    shadow: none
+    spacing: { margin:{t:0,r:0,b:0,l:0}, padding:{t:0,r:0,b:0,l:0} }
+    content: "Profile photo (content-managed); decorative for spec overlays."
+    states: {}
+    motion: { trigger: load, from:{opacity:1}, to:{opacity:1}, duration:0, easing:"cubic-bezier(0,0,1,1)", delay:0 }
+    notes: "Rotate −6.5° like the contour; same corner radius."
+
+  - id: "distance-label"
+    kind: text
+    box:
+      "360": { x: 44.3, y: 354.1, w: 75.1, h: 8.0 }
+      "393": { x: 46.2, y: 385.5, w: 82.0, h: 8.7 }
+      "430": { x: 50.6, y: 421.8, w: 89.7, h: 9.6 }
+    typeStyle:
+      family: "Rubik"
+      weight: 400
+      size: { "360": 5.2, "393": 5.7, "430": 6.2 }
+      line: { "360": 7.28, "393": 7.98, "430": 8.68 }
+      track: 0
+      transform: none
+    colors: { fg: "#767674", bg: "transparent" }
+    borders: { width: 0, style: solid, radius: 0 }
+    shadow: none
+    spacing: { margin:{t:0,r:0,b:0,l:0}, padding:{t:0,r:0,b:0,l:0} }
+    content: "30m from you"
+    states: {}
+    motion: { trigger: load, from:{opacity:1}, to:{opacity:1}, duration:0, easing:"cubic-bezier(0,0,1,1)", delay:0 }
+    notes: "Rotate −6.3° around element center."
+
+a11y:
+  contrast: "Non-critical label; ensure readable against bg."
+  keyboard: "N/A (static content)"
+  reducedMotion: "No motion on this slice."
+
+acceptance:
+  breakpoints: ["360","393","430"]
+  overlayTolerancePercent: 0.10
