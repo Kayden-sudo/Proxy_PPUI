@@ -80,3 +80,24 @@
   path: UI-SPEC/assets/icons/ic_nav_profile.svg.svg
   intrinsic: [1440, 810]
   notes: "Bottom tab — Profile. Same color policy as other tabs."
+
+# ── SOFT BLURS (add files under /UI-SPEC/assets/blob/) ────────────────────────────
+
+  - id: "blob.green.v1"
+    type: png
+    path: "UI-SPEC/assets/blob/blob.green.png"
+    intrinsic: [1920, 1080]
+    notes: "Soft green blur; dominant #68E5AE @100% opacity; sRGB PNG with transparent background."
+
+  - id: "blob.purple.v1"
+    type: png
+    path: "UI-SPEC/assets/blob/blob.purple.png"
+    intrinsic: [1920, 1080]
+    notes: "Soft purple blur; dominant #A99BF2 @100% opacity; sRGB PNG with transparent background."
+
+  - id: "blob.grey.v1"
+    type: png
+    path: "UI-SPEC/assets/blob/blob.grey.png"
+    intrinsic: [1920, 1080]
+    notes: "Soft grey blur; dominant #B7B7B5 @100% opacity; sRGB PNG with transparent background."
+
