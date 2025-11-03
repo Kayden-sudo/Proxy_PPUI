@@ -1,0 +1,63 @@
+sliceId: "legal"
+route: "/welcome-screen"
+
+overlays:
+  "360": "UI-SPEC/routes/welcome-screen/overlays/welcome-360.png"
+  "393": "UI-SPEC/routes/welcome-screen/overlays/welcome-393.png"
+  "430": "UI-SPEC/routes/welcome-screen/overlays/welcome-430.png"
+
+layout:
+  container: { "360": 360, "393": 393, "430": 430 }
+  columns: 12
+  gutter: 0
+  padding:
+    "360": { top: 0, right: 0, bottom: 0, left: 0 }
+    "393": { top: 0, right: 0, bottom: 0, left: 0 }
+    "430": { top: 0, right: 0, bottom: 0, left: 0 }
+
+elements:
+  - id: "legal-text"
+    kind: text
+    box:
+      "360": { x: 75.0, y: 404.8, w: 211.7, h: 32.4 }
+      "393": { x: 81.9, y: 442.0, w: 231.1, h: 35.3 }
+      "430": { x: 89.6, y: 483.6, w: 252.9, h: 38.7 }
+    typeStyle:
+      family: "Rubik"
+      weight: 400
+      size: { "360": 6.1, "393": 6.6, "430": 7.3 }
+      line:
+        "360": 8.54        # 1.4 × 6.1
+        "393": 9.24        # 1.4 × 6.6
+        "430": 10.22       # 1.4 × 7.3
+      track: 0
+      transform: none
+      align: center
+    colors: { fg: "#0A0903", bg: "transparent" }
+    borders: { width: 0, style: solid, radius: 0 }
+    shadow: none
+    spacing: { margin: { t:0, r:0, b:0, l:0 }, padding: { t:0, r:0, b:0, l:0 } }
+    content: "By tapping 'Sign in' / 'Create account', you agree to our Terms of Service. Learn how we process your data in our Privacy Policy and Cookies Policy."
+    # Inline overrides (for weight & underline on specific phrases)
+    inlineOverrides:
+      - match: "Terms of Service"
+        weight: 500
+        underline: true
+      - match: "Privacy Policy"
+        weight: 500
+        underline: true
+      - match: "Cookies Policy"
+        weight: 500
+        underline: true
+    states: {}
+    motion: { trigger: load, from:{opacity:1}, to:{opacity:1}, duration:0, easing:"cubic-bezier(0,0,1,1)", delay:0 }
+    notes: "Single centered paragraph; ‘match’ is literal substring; underline is stylistic, not interactive (unless linked elsewhere)."
+
+a11y:
+  contrast: "≥ 4.5:1 vs background"
+  keyboard: "N/A"
+  reducedMotion: "No motion."
+
+acceptance:
+  breakpoints: ["360","393","430"]
+  overlayTolerancePercent: 0.10
