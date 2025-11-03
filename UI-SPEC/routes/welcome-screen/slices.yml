@@ -12,4 +12,6 @@ slices:
   - wordmark
   - left-card
   - right-card
-  # next: legal, cta-primary, links-secondary
+  - legal
+  - cta-primary
+  - links-secondary
