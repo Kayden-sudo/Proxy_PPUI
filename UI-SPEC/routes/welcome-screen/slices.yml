@@ -10,5 +10,6 @@ slices:
   - logo-mark
   - subtitle
   - wordmark
-  # next: left-card, right-card, legal, cta-primary, links-secondary
-
+  - left-card
+  - right-card
+  # next: legal, cta-primary, links-secondary
