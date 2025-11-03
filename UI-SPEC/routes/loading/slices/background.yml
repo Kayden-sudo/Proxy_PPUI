@@ -2,9 +2,9 @@ sliceId: "loading.background"
 route: "/loading"
 
 overlays:
-  360: "routes/loading/overlays/loading-bg-360.png"
-  393: "routes/loading/overlays/loading-bg-393.png"
-  430: "routes/loading/overlays/loading-bg-430.png"
+  360: "routes/loading/overlays/loading-360.png"
+  393: "routes/loading/overlays/loading-393.png"
+  430: "routes/loading/overlays/loading-430.png"
 
 layout:
   container: viewport
@@ -25,7 +25,7 @@ elements:
     spacing: { margin: { t:0, r:0, b:0, l:0 }, padding: { t:0, r:0, b:0, l:0 } }
     content: ""
     states: {}
-    notes: "Background must fill the entire viewport at runtime. If device height differs from canonical, extend to full height."
+    notes: "Background fills the entire viewport at runtime. If device height differs from canonical, extend to full height."
 
 a11y:
   contrast: ">= 4.5:1 for body text, >= 3:1 for large text (no text here)"
