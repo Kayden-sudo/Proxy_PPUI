@@ -1,0 +1,41 @@
+sliceId: "background"
+route: "/welcome-screen"
+
+overlays:
+  "360": "UI-SPEC/routes/welcome-screen/overlays/welcome-360.png"
+  "393": "UI-SPEC/routes/welcome-screen/overlays/welcome-393.png"
+  "430": "UI-SPEC/routes/welcome-screen/overlays/welcome-430.png"
+
+layout:
+  container: { "360": 360, "393": 393, "430": 430 }
+  columns: 12
+  gutter: 0
+  padding:
+    "360": { top: 0, right: 0, bottom: 0, left: 0 }
+    "393": { top: 0, right: 0, bottom: 0, left: 0 }
+    "430": { top: 0, right: 0, bottom: 0, left: 0 }
+
+elements:
+  - id: "bg-gradient"
+    kind: section
+    box:
+      "360": { x: 0, y: 0, w: 360, h: 653 }
+      "393": { x: 0, y: 0, w: 393, h: 713 }
+      "430": { x: 0, y: 0, w: 430, h: 780 }
+    colors:
+      bg: "linear-gradient(135deg, #FFFFFF 0%, #FFFFFF 20%, rgba(254,252,243,0.10) 40%, rgba(242,255,251,0.20) 60%, #FFFFFF 80%, #FFFFFF 100%)"
+    borders: { width: 0, style: solid, radius: 0 }
+    shadow: none
+    spacing: { margin:{t:0,r:0,b:0,l:0}, padding:{t:0,r:0,b:0,l:0} }
+    content: ""
+    states: {}
+    motion: { trigger: load, from:{opacity:1}, to:{opacity:1}, duration:0, easing:"cubic-bezier(0,0,1,1)", delay:0 }
+
+a11y:
+  contrast: "N/A (decorative)"
+  keyboard: "N/A"
+  reducedMotion: "No motion."
+
+acceptance:
+  breakpoints: ["360","393","430"]
+  overlayTolerancePercent: 0.10
