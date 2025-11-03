@@ -1,0 +1,41 @@
+sliceId: "cta-primary"
+route: "/welcome-screen"
+
+overlays:
+  "360": "UI-SPEC/routes/welcome-screen/overlays/welcome-360.png"
+  "393": "UI-SPEC/routes/welcome-screen/overlays/welcome-393.png"
+  "430": "UI-SPEC/routes/welcome-screen/overlays/welcome-430.png"
+
+layout:
+  container: { "360": 360, "393": 393, "430": 430 }
+  columns: 12
+  gutter: 0
+  padding:
+    "360": { top: 0, right: 0, bottom: 0, left: 0 }
+    "393": { top: 0, right: 0, bottom: 0, left: 0 }
+    "430": { top: 0, right: 0, bottom: 0, left: 0 }
+
+elements:
+  - id: "cta-primary"
+    kind: image
+    asset: "cta.create.acc"  # see assets.yml entry to append below
+    box:
+      "360": { x: 56.5, y: 452.3, w: 246.9, h: 39.1 }
+      "393": { x: 61.7, y: 493.8, w: 269.6, h: 42.6 }
+      "430": { x: 67.5, y: 540.2, w: 295.0, h: 46.6 }
+    typeStyle: { family: "—", weight: 400, size: 0, line: 0, track: 0 }
+    colors: { fg: "none", bg: "none" }
+    borders: { width: 0, style: solid, radius: 0 }
+    shadow: none
+    spacing: { margin:{t:0,r:0,b:0,l:0}, padding:{t:0,r:0,b:0,l:0} }
+    content: "Create account"   # accessible name (text is baked into the asset)
+    states: {}
+    motion: { trigger: load, from:{opacity:1}, to:{opacity:1}, duration:0, easing:"cubic-bezier(0,0,1,1)", delay:0 }
+    notes: "SVG contains the pill, right notch, and label (outlined). 0° rotation. Visual box == hit target."
+a11y:
+  contrast: "Ensure button text inside the SVG meets contrast on black."
+  keyboard: "Focusable; click/tap activates."
+  reducedMotion: "No motion."
+acceptance:
+  breakpoints: ["360","393","430"]
+  overlayTolerancePercent: 0.10
