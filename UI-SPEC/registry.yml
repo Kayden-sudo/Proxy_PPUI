@@ -90,12 +90,20 @@ routes:
         430: "routes/home/overlays/home-empty-430.png"
     notes: On empty/low-density case, show scrim overlay (see overlays/home-empty-*).
 
-  - id: chat.list
-    path: /chat
+  - id: chats.list      
+    path: /chats
     kind: screen
-    purpose: List of active chats with distance badges; chat expiry notice; open-status bar.
-    exitsTo: [home, profile]
-    notes: Bottom tab = chat (active).
+    purpose: List of active 1-to-1 chats (only pairs currently within the selected radius).
+    notes: Entries appear only while both users are within radius and an active chatbox exists.
+
+  - id: chat.thread
+    path: /chat/:id
+    kind: screen
+    purpose: 1-to-1 thread UI.
+    rules:
+      - Chatbox availability window: 5 minutes from mutual wave (ability to send messages disappears when window ends).
+      - If either user leaves the radius, the chat is hidden; it can re-appear only if both wave again on a later encounter.
+    notes: Messages themselves do not expire; only the chatbox availability does.
 
   - id: profile
     path: /profile
@@ -113,7 +121,6 @@ routes:
     notes: Simple list screen with section headers.
 
   # -------------------------- APPROVED EXTRAS -------------------------------
-  # (B / Hotspots intentionally excluded per your decision.)
 
   # A — Wave received dialog (full-screen scrim + card)
   - id: wave.received
