@@ -1,17 +1,17 @@
 slices:
   - id: "loading.background"
     overlays:
-      360: "routes/loading/overlays/loading-bg-360.png"
-      393: "routes/loading/overlays/loading-bg-393.png"
-      430: "routes/loading/overlays/loading-bg-430.png"
-    note: "Solid #F3F4F6 background"
+      360: "routes/loading/overlays/loading-360.png"
+      393: "routes/loading/overlays/loading-393.png"
+      430: "routes/loading/overlays/loading-430.png"
+    note: "Full-page overlay; background is solid #F3F4F6"
 
   - id: "loading.logoArc"
     overlays:
-      360: "routes/loading/overlays/loading-logo-360.png"
-      393: "routes/loading/overlays/loading-logo-393.png"
-      430: "routes/loading/overlays/loading-logo-430.png"
-    note: "Centered colored arc logo"
+      360: "routes/loading/overlays/loading-360.png"
+      393: "routes/loading/overlays/loading-393.png"
+      430: "routes/loading/overlays/loading-430.png"
+    note: "Full-page overlay reused to verify logo placement"
 
 acceptance:
   breakpoints: [360, 393, 430]
