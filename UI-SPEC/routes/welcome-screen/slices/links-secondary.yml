@@ -1,0 +1,91 @@
+sliceId: "links-secondary"
+route: "/welcome-screen"
+
+overlays:
+  "360": "UI-SPEC/routes/welcome-screen/overlays/welcome-360.png"
+  "393": "UI-SPEC/routes/welcome-screen/overlays/welcome-393.png"
+  "430": "UI-SPEC/routes/welcome-screen/overlays/welcome-430.png"
+
+layout:
+  container: { "360": 360, "393": 393, "430": 430 }
+  columns: 12
+  gutter: 0
+  padding:
+    "360": { top: 0, right: 0, bottom: 0, left: 0 }
+    "393": { top: 0, right: 0, bottom: 0, left: 0 }
+    "430": { top: 0, right: 0, bottom: 0, left: 0 }
+
+elements:
+  # Left link — navigates to the regular sign-in auth page
+  - id: "link-sign-in"
+    kind: text
+    box:
+      "360": { x: 67.1, y: 509.3, w: 49.8, h: 14.5 }
+      "393": { x: 73.6, y: 556.1, w: 55.0, h: 16.2 }
+      "430": { x: 84.8, y: 608.4, w: 54.0, h: 18.0 }
+    typeStyle:
+      family: "Rubik"
+      weight: 500
+      size: { "360": 9.5, "393": 10.5, "430": 11.5 }
+      line: { "360": 13.3, "393": 14.7, "430": 16.1 }   # 1.4×
+      track: 0
+      transform: none
+    colors: { fg: "#0A0903", bg: "transparent" }
+    borders: { width: 0, style: solid, radius: 0 }
+    shadow: none
+    spacing: { margin:{t:0,r:0,b:0,l:0}, padding:{t:0,r:0,b:0,l:0} }
+    content: "Sign in"
+    states: {}
+    motion: { trigger: load, from:{opacity:1}, to:{opacity:1}, duration:0, easing:"cubic-bezier(0,0,1,1)", delay:0 }
+    notes: "Visual box is the hit target. Navigates to regular sign-in auth page (route id to be confirmed)."
+
+  # Right link — text part of the 'Enter as guest →' action
+  - id: "link-enter-guest-text"
+    kind: text
+    box:
+      "360": { x: 173.4, y: 509.3, w: 106.7, h: 15.1 }
+      "393": { x: 189.3, y: 556.1, w: 116.4, h: 16.5 }
+      "430": { x: 207.1, y: 608.4, w: 127.4, h: 18.1 }
+    typeStyle:
+      family: "Rubik"
+      weight: 400
+      size: { "360": 9.5, "393": 10.5, "430": 11.5 }
+      line: { "360": 13.3, "393": 14.7, "430": 16.1 }   # 1.4×
+      track: 0
+      transform: none
+    colors: { fg: "#0A0903", bg: "transparent" }
+    borders: { width: 0, style: solid, radius: 0 }
+    shadow: none
+    spacing: { margin:{t:0,r:0,b:0,l:0}, padding:{t:0,r:0,b:0,l:0} }
+    content: "Enter as guest"
+    states: {}
+    motion: { trigger: load, from:{opacity:1}, to:{opacity:1}, duration:0, easing:"cubic-bezier(0,0,1,1)", delay:0 }
+    notes: "This element and the adjacent arrow act as one link (same target). Visual box is a hit target."
+
+  # Right link — arrow asset (clickable, same action as the text)
+  - id: "link-enter-guest-arrow"
+    kind: icon
+    asset: "icon.enter_as_guest_arrow"
+    box:
+      "360": { x: 287.4, y: 513.3, w: 5.3, h: 7.9 }
+      "393": { x: 313.8, y: 560.4, w: 5.7, h: 8.6 }
+      "430": { x: 343.3, y: 613.1, w: 6.1, h: 9.3 }
+    typeStyle: { family: "—", weight: 400, size: 0, line: 0, track: 0 }
+    colors: { fg: "none", bg: "transparent" }
+    borders: { width: 0, style: solid, radius: 0 }
+    shadow: none
+    spacing: { margin:{t:0,r:0,b:0,l:0}, padding:{t:0,r:0,b:0,l:0} }
+    content: "Enter as guest"   # accessible name; same link action as the text
+    states: {}
+    motion: { trigger: load, from:{opacity:1}, to:{opacity:1}, duration:0, easing:"cubic-bezier(0,0,1,1)", delay:0 }
+    notes: "Arrow is clickable and shares the same navigation as 'Enter as guest'. Visual box is a hit target."
+a11y:
+  contrast: "≥ 4.5:1 for link text."
+  keyboard: "Both links focusable; arrow uses same accessible name as text."
+  reducedMotion: "No motion."
+  hitTargets:
+    minimum: { w: 44, h: 44 }
+    policy: "Here, visual boxes are the hit targets as confirmed."
+acceptance:
+  breakpoints: ["360","393","430"]
+  overlayTolerancePercent: 0.10
