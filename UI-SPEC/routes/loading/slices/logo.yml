@@ -26,10 +26,10 @@ elements:
     content: "Proxy mark (colored arc) — asset id: proxy_mark_color"
     states: {}
     motion: null
-    notes: "Source asset path: UI-SPEC/assets/logo/proxy_mark_color.svg.svg"
+    notes: "At runtime: center horizontally AND vertically in the viewport. Keep the size (w,h) per breakpoint; ignore the absolute Y if device height differs."
 
 a11y:
-  contrast: "n/a (image-only symbol on #F3F4F6)"
+  contrast: "n/a (symbol on flat BG)"
   keyboard: "No interactive elements on this slice"
   reducedMotion: "No motion on this slice"
 
