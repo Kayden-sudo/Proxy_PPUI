@@ -40,11 +40,22 @@ colors:
     scrim: "rgba(10,9,3,0.90)"   # same hue as UI black @ 90%
 
 gradients:
+  white:
+    gradient:
   # Soft background used on the home/hero & a few other screens
-  primary.gradient(also referred to as white.gradient):
     type: radial
     at: "0% 0%"
     stops: ["#FFFFFF","#FFFFFF","#F2FFFB","#FEFCF3","#FFFFFF","#FFFFFF"]
+
+scrims:
+  white:
+  regular:   { fill: "gradients.white.gradient", alpha: 1.00 }   # 100% white veil (radial)
+    veil95:    { fill: "gradients.white.gradient", alpha: 0.95 }   # 95% white veil (radial)
+    solid100:  { fill: "#FFFFFF",                    alpha: 1.00 } # pure white, no gradient
+  dark:
+    90:        { fill: "#0A0903",                    alpha: 0.90 } # dark dim
+  gray:
+    100:       { fill: "#F3F4F6",                    alpha: 1.00 } # solid light gray
 
   # Ring/outline blend used for: profile upload circle & profile header double-ring
   accent.greenPurple:
@@ -234,5 +245,6 @@ usage:
 notes:
   - Focus rings are intentionally NOT used (touch/mobile only).
   - Keep Rubik weights to 300/400/500 only (Light/Regular/Medium).
+
 
 
