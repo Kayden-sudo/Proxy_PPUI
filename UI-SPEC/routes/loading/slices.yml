@@ -1,16 +1,16 @@
 slices:
   - id: "loading.background"
     overlays:
-      360: "routes/loading/overlays/loading-360.png"
-      393: "routes/loading/overlays/loading-393.png"
-      430: "routes/loading/overlays/loading-430.png"
+      360: "UI-SPEC/routes/loading/overlays/loading-360.png"
+      393: "UI-SPEC/routes/loading/overlays/loading-393.png"
+      430: "UI-SPEC/routes/loading/overlays/loading-430.png"
     note: "Full-page overlay; background is solid #F3F4F6"
 
   - id: "loading.logoArc"
     overlays:
-      360: "routes/loading/overlays/loading-360.png"
-      393: "routes/loading/overlays/loading-393.png"
-      430: "routes/loading/overlays/loading-430.png"
+      360: "UI-SPEC/routes/loading/overlays/loading-360.png"
+      393: "UI-SPEC/routes/loading/overlays/loading-393.png"
+      430: "UI-SPEC/routes/loading/overlays/loading-430.png"
     note: "Full-page overlay reused to verify logo placement"
 
 acceptance:
