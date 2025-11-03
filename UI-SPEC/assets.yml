@@ -81,6 +81,12 @@
   intrinsic: [1440, 810]
   notes: "Bottom tab — Profile. Same color policy as other tabs."
 
+  - id: "icon.enter_as_guest_arrow"
+  type: svg
+  path: "UI-SPEC/assets/icons/enter-as-guest-arrow.svg"
+  intrinsic: [6.1, 9.3]   # using 430 box as intrinsic; if the SVG viewBox differs, tell me and I’ll update
+  notes: "Arrow used in 'Enter as guest' link; reused across breakpoints; native color."
+
 # ── BUTTONS (add files under /UI-SPEC/assets/buttons/) ────────────────────────────
   
   - id: "cta.create.acc"
