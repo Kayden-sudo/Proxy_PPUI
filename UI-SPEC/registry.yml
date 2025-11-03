@@ -161,17 +161,24 @@ routes:
 
   # E — Location permission gate (policy: request immediately after auth/guest entry)
   - id: permission.location
-    path: /permission/location
-    kind: sheet
-    purpose: Pre-permission explainer + “Enable location” → triggers system dialog.
-    overlays:
-      location-permission:
-        360: "routes/permission.location/overlays/location-permission-360.png"
-        393: "routes/permission.location/overlays/location-permission-393.png"
-        430: "routes/permission.location/overlays/location-permission-430.png"
-    entersFrom: [auth.signIn, onboarding.photo, guest.gate.return]
-    exitsTo: [home]
-    notes: If denied, route back to Welcome (can’t enter Home per policy).
+     path: /permission/location
+     kind: sheet
+     purpose: Explain why location is required; guide user to enable it.
+     cta:
+       - "Open Settings"
+       - "Try Again"
+     notes: Shown after login/guest entry if location is denied; blocks access to /home until granted.
+
+  - id: permission.notifications
+    path: /permission/notifications
+    kind: screen
+    purpose: Explain benefits of enabling push notifications (waves & mutuals).
+    triggers:
+      - firstTimeOpenStatusOn: true
+    cta:
+      - "Enable notifications"
+      - "Not now"
+    notes: Skip if already granted or previously declined; does not block /home.
 
   # F — Account deletion confirm (from Settings)
   - id: account.deleteConfirm
