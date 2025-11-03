@@ -1,0 +1,43 @@
+sliceId: "right-card"
+route: "/welcome-screen"
+
+overlays:
+  "360": "UI-SPEC/routes/welcome-screen/overlays/welcome-360.png"
+  "393": "UI-SPEC/routes/welcome-screen/overlays/welcome-393.png"
+  "430": "UI-SPEC/routes/welcome-screen/overlays/welcome-430.png"
+
+layout:
+  container: { "360": 360, "393": 393, "430": 430 }
+  columns: 12
+  gutter: 0
+  padding:
+    "360": { top: 0, right: 0, bottom: 0, left: 0 }
+    "393": { top: 0, right: 0, bottom: 0, left: 0 }
+    "430": { top: 0, right: 0, bottom: 0, left: 0 }
+
+elements:
+  # Stacking: blob → attachment → contour → photo → one-liner → distance-label
+  - id: "blob-right-ambient"
+    kind: image
+    asset: "blob.purple.v1"
+    box:
+      "360": { x: 242.9, y: 246.6, w: 141.4, h: 141.4 }
+      "393": { x: 265.1, y: 269.2, w: 154.4, h: 154.4 }
+      "430": { x: 290.1, y: 294.5, w: 168.9, h: 168.9 }
+    typeStyle: { family: "—", weight: 400, size: 0, line: 0, track: 0 }
+    colors: { fg: "none", bg: "none" }
+    borders: { width: 0, style: solid, radius: 0 }
+    shadow: none
+    spacing: { margin: { t:0, r:0, b:0, l:0 }, padding: { t:0, r:0, b:0, l:0 } }
+    content: "Purple blur asset (decorative)."
+    states: {}
+    motion: { trigger: load, from: { opacity:1 }, to: { opacity:1 }, duration:0, easing: "cubic-bezier(0,0,1,1)", delay:0 }
+    notes: "Rotate +6.6° around element center."
+
+  - id: "tag-attachment"
+    kind: section
+    box:
+      "360": { x: 261.7, y: 223.4, w: 112.6, h: 85.3 }
+      "393": { x: 285.7, y: 244.0, w: 122.9, h: 93.1 }
+      "430": { x: 312.6, y: 266.9, w: 134.5, h: 101.9 }
+    typeStyle: { family: "—", weight: 400, size: 0,
