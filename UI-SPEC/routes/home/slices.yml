@@ -1,0 +1,119 @@
+slices:
+  - id: "home.background"
+    overlays:
+      360: "routes/home/overlays/home-background-360.png"
+      393: "routes/home/overlays/home-background-393.png"
+      430: "routes/home/overlays/home-background-430.png"
+    note: "Solid #F3F4F6 page background"
+
+  - id: "home.topbar.brand"
+    overlays:
+      360: "routes/home/overlays/home-topbar-brand-360.png"
+      393: "routes/home/overlays/home-topbar-brand-393.png"
+      430: "routes/home/overlays/home-topbar-brand-430.png"
+    note: "Proxy word-logo (left)"
+
+  - id: "home.topbar.prompt"
+    overlays:
+      360: "routes/home/overlays/home-topbar-prompt-360.png"
+      393: "routes/home/overlays/home-topbar-prompt-393.png"
+      430: "routes/home/overlays/home-topbar-prompt-430.png"
+    note: "Rounded rect in #0A0903, right edge clipped by semi-thick #F3F4F6 stripe"
+
+  - id: "home.topbar.divider"
+    overlays:
+      360: "routes/home/overlays/home-topbar-divider-360.png"
+      393: "routes/home/overlays/home-topbar-divider-393.png"
+      430: "routes/home/overlays/home-topbar-divider-430.png"
+    note: "1px divider (#0A0903)"
+
+  - id: "home.people.grid"
+    overlays:
+      360: "routes/home/overlays/home-people-grid-360.png"
+      393: "routes/home/overlays/home-people-grid-393.png"
+      430: "routes/home/overlays/home-people-grid-430.png"
+    note: "3-across cards; handles active vs far (200–500m) including one-liner/gray rules"
+
+  - id: "home.bottom.divider"
+    overlays:
+      360: "routes/home/overlays/home-bottom-divider-360.png"
+      393: "routes/home/overlays/home-bottom-divider-393.png"
+      430: "routes/home/overlays/home-bottom-divider-430.png"
+    note: "Hard separator above lower section; lower section layers above grid"
+
+  - id: "home.intent.label"
+    overlays:
+      360: "routes/home/overlays/home-intent-label-360.png"
+      393: "routes/home/overlays/home-intent-label-393.png"
+      430: "routes/home/overlays/home-intent-label-430.png"
+    note: "\"What’s your mood ?\""
+
+  - id: "home.intent.buttons"
+    overlays:
+      360: "routes/home/overlays/home-intent-buttons-360.png"
+      393: "routes/home/overlays/home-intent-buttons-393.png"
+      430: "routes/home/overlays/home-intent-buttons-430.png"
+    note: "Friends/Dating buttons with selected fill + text color swap"
+
+  - id: "home.visibility.card"
+    overlays:
+      360: "routes/home/overlays/home-visibility-card-360.png"
+      393: "routes/home/overlays/home-visibility-card-393.png"
+      430: "routes/home/overlays/home-visibility-card-430.png"
+    note: "White.gradient card with status dot, label, toggle, and Set time"
+
+  - id: "home.nav.glow-circles"
+    overlays:
+      360: "routes/home/overlays/home-nav-glow-circles-360.png"
+      393: "routes/home/overlays/home-nav-glow-circles-393.png"
+      430: "routes/home/overlays/home-nav-glow-circles-430.png"
+    note: "Three white.gradient circles below the nav icons (aesthetic)"
+
+  - id: "home.navbar"
+    overlays:
+      360: "routes/home/overlays/home-navbar-360.png"
+      393: "routes/home/overlays/home-navbar-393.png"
+      430: "routes/home/overlays/home-navbar-430.png"
+    note: "Bottom nav (chat, location active, profile)"
+
+overlays:
+  - id: "home.overlay.no-users"
+    scrim: "scrims.dark.90"
+    overlays:
+      360: "routes/home/overlays/home-overlay-no-users-360.png"
+      393: "routes/home/overlays/home-overlay-no-users-393.png"
+      430: "routes/home/overlays/home-overlay-no-users-430.png"
+
+  - id: "home.overlay.wave-send-confirm"
+    scrim: "scrims.gray.100"
+    overlays:
+      360: "routes/home/overlays/home-overlay-wave-send-confirm-360.png"
+      393: "routes/home/overlays/home-overlay-wave-send-confirm-393.png"
+      430: "routes/home/overlays/home-overlay-wave-send-confirm-430.png"
+    note: "First-time wave confirmation + 'Don’t ask again'"
+
+  - id: "home.overlay.wave-received"
+    scrim: "scrims.white.veil95"
+    overlays:
+      360: "routes/home/overlays/home-overlay-wave-received-360.png"
+      393: "routes/home/overlays/home-overlay-wave-received-393.png"
+      430: "routes/home/overlays/home-overlay-wave-received-430.png"
+
+  - id: "home.overlay.guest-gate"
+    scrim: "scrims.gray.100"
+    overlays:
+      360: "routes/home/overlays/home-overlay-guest-gate-360.png"
+      393: "routes/home/overlays/home-overlay-guest-gate-393.png"
+      430: "routes/home/overlays/home-overlay-guest-gate-430.png"
+
+  - id: "home.overlay.set-time"
+    scrim: "scrims.gray.100"
+    overlays:
+      360: "routes/home/overlays/home-overlay-set-time-360.png"
+      393: "routes/home/overlays/home-overlay-set-time-393.png"
+      430: "routes/home/overlays/home-overlay-set-time-430.png"
+    note: "Center modal to select visibility duration"
+
+acceptance:
+  breakpoints: [360, 393, 430]
+  overlayTolerancePercent: 0.10
