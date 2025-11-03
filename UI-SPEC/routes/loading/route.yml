@@ -1,0 +1,11 @@
+route: "/loading"
+id: "loading"
+summary: "Initial loading screen with solid grey background and centered colored arc logo."
+notes:
+  - "No spinner. No CTA. Pure brand pause."
+background:
+  fill: "#F3F4F6"   # per your rule: loading screen uses the same solid grey background
+a11y:
+  contrast: ">= 4.5:1 for body text, >= 3:1 for large text (not applicable here, but keep for consistency)"
+  keyboard: "No focusable elements on this screen."
+  reducedMotion: "No motion on this screen."
