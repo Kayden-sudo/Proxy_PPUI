@@ -131,7 +131,8 @@ It is designed so an AI-assisted coder (Claude Code / Cursor) can read the spec 
 ## 6) Known current contents (synced to meta.yml)
 
 - Breakpoints: 360, 393, 430 (portrait), units px, color space sRGB.
-- Routes present: at least loading/ and home/ (see registry.yml and per-route folders).
+- Routes present: at least loading/ and welcome-screen/ (see registry.yml and per-route folders).
 - Assets: icons/logo under UI-SPEC/assets/ and registered in assets.yml.
 
 If you add or rename tokens/assets/routes/slices, update the relevant index files in this folder first.
+
