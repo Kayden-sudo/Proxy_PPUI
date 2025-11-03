@@ -1,82 +1,82 @@
 # Catalog of visual assets used by the app.
 # Notes aim to brief the future implementer reading this repo cold.
 
-# ── LOGOS (already added) ──────────────────────────────────────────────────────
+# ── LOGOS ─────────────────────────────────────────────────────────────────────
 - id: logo_mark_black
   type: svg
-  path: UI-SPEC/assets/logo/proxy_mark_black.svg
+  path: UI-SPEC/assets/logo/proxy_mark_black.svg.svg
   intrinsic: [1440, 810]
   notes: "Symbol only, mono. Safe to tint from tokens on light backgrounds (e.g., headers, nav, small badges)."
 
-- id: logo_mark_color
+- id: proxy_mark_color          # <— stable id for the colored mark (as you confirmed)
   type: svg
-  path: UI-SPEC/assets/logo/proxy_mark_color.svg
+  path: UI-SPEC/assets/logo/proxy_mark_color.svg.svg
   intrinsic: [1440, 810]
-  notes: "Symbol only with baked brand colors (purple/green/black). Use as-is on light backgrounds (e.g., splash/loading); do not tint."
+  notes: "Symbol only with baked brand colors. Use as-is on light backgrounds (e.g., splash/loading); do not tint."
 
 - id: logo_lockup_black
   type: svg
-  path: UI-SPEC/assets/logo/proxy_lockup_black.svg
+  path: UI-SPEC/assets/logo/proxy_lockup_black.svg.svg
   intrinsic: [1440, 810]
   notes: "Symbol + 'Proxy' wordmark in mono. Use for standard headers/heroes on light backgrounds."
 
 - id: logo_lockup_gold
   type: svg
-  path: UI-SPEC/assets/logo/proxy_lockup_gold.svg
+  path: UI-SPEC/assets/logo/proxy_lockup_gold.svg.svg
   intrinsic: [1440, 810]
   notes: "Premium lockup (Proxy+). Gold is baked (matches premium token #A48208). Use on paywall/premium only; do not tint."
 
 - id: logo_word_black
   type: svg
-  path: UI-SPEC/assets/logo/proxy_word_black.svg
+  path: UI-SPEC/assets/logo/proxy_word_black.svg.svg
   intrinsic: [1440, 810]
   notes: "Word-only 'Proxy' (Etna). Use when the symbol is shown elsewhere, or where a compact wordmark is preferable."
 
-# ── ICONS (add files under /UI-SPEC/assets/icons/) ─────────────────────────────
+# ── ICONS (add files under /UI-SPEC/assets/icons/) ────────────────────────────
 - id: icon_provider_apple
   type: svg
-  path: UI-SPEC/assets/icons/ic_provider_apple.svg
+  path: UI-SPEC/assets/icons/ic_provider_apple.svg.svg
   intrinsic: [1440, 810]
   notes: "Apple sign-in badge/icon used in auth provider row. Use as-is (do not tint)."
 
 - id: icon_provider_google
   type: svg
-  path: UI-SPEC/assets/icons/ic_provider_google.svg
+  path: UI-SPEC/assets/icons/ic_provider_google.svg.svg
   intrinsic: [1440, 810]
   notes: "Google sign-in badge/icon used in auth provider row. Use as-is (do not tint)."
 
 - id: icon_edit_pen_white
   type: svg
-  path: UI-SPEC/assets/icons/ic_edit_pen_white.svg
+  path: UI-SPEC/assets/icons/ic_edit_pen_white.svg.svg
   intrinsic: [1440, 810]
   notes: "White pen used on 'Edit my profile' button/pill. Intended for dark/purple surfaces; keep white."
 
 - id: icon_settings
   type: svg
-  path: UI-SPEC/assets/icons/ic_settings.svg
+  path: UI-SPEC/assets/icons/ic_settings.svg.svg
   intrinsic: [1440, 810]
   notes: "Gear icon used in the top-right of Profile and in Settings list headers. Can inherit color from tokens."
 
 - id: icon_wave_hand
   type: svg
-  path: UI-SPEC/assets/icons/ic_wave_hand.svg
+  path: UI-SPEC/assets/icons/ic_wave_hand.svg.svg
   intrinsic: [1440, 810]
-  notes: "Waving hand used in 'Angie waved at you!' overlay and wave interactions. Keep brand green/purple accents if baked; otherwise tint via tokens."
+  notes: "Waving hand used in 'Angie waved at you!' overlay and other micro-interactions."
 
 - id: icon_nav_chat
   type: svg
-  path: UI-SPEC/assets/icons/ic_nav_chat.svg
+  path: UI-SPEC/assets/icons/ic_nav_chat.svg.svg
   intrinsic: [1440, 810]
   notes: "Bottom tab — Chat. Default color = tokens.ink/fg on light BG; active state uses brand color per tokens."
 
 - id: icon_nav_location
   type: svg
-  path: UI-SPEC/assets/icons/ic_nav_location.svg
+  path: UI-SPEC/assets/icons/ic_nav_location.svg.svg
   intrinsic: [1440, 810]
   notes: "Bottom tab — Home/Proximity (map pin). Same color policy as other tabs."
 
 - id: icon_nav_profile
   type: svg
-  path: UI-SPEC/assets/icons/ic_nav_profile.svg
+  path: UI-SPEC/assets/icons/ic_nav_profile.svg.svg
   intrinsic: [1440, 810]
   notes: "Bottom tab — Profile. Same color policy as other tabs."
