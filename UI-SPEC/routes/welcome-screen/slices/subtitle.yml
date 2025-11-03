@@ -1,0 +1,47 @@
+sliceId: "subtitle"
+route: "/welcome-screen"
+
+overlays:
+  "360": "UI-SPEC/routes/welcome-screen/overlays/welcome-360.png"
+  "393": "UI-SPEC/routes/welcome-screen/overlays/welcome-393.png"
+  "430": "UI-SPEC/routes/welcome-screen/overlays/welcome-430.png"
+
+layout:
+  container: { "360": 360, "393": 393, "430": 430 }
+  columns: 12
+  gutter: 0
+  padding:
+    "360": { top:0, right:0, bottom:0, left:0 }
+    "393": { top:0, right:0, bottom:0, left:0 }
+    "430": { top:0, right:0, bottom:0, left:0 }
+
+elements:
+  - id: "subtitle"
+    kind: text
+    box:
+      "360": { x: 77.5, y: 154.5, w: 205.1, h: 10.6 }
+      "393": { x: 84.6, y: 168.8, w: 223.9, h: 11.5 }
+      "430": { x: 92.5, y: 184.6, w: 245.0, h: 12.6 }
+    typeStyle:
+      family: "Rubik"
+      weight: 300
+      size: { "360": 6.7, "393": 7.3, "430": 8.0 }
+      line: { "360": 9.3, "393": 10.2, "430": 11.1 }
+      track: "0.063em"
+      transform: none
+    colors: { fg: "#0A0903", bg: "transparent" }
+    borders: { width: 0, style: solid, radius: 0 }
+    shadow: none
+    spacing: { margin:{t:0,r:0,b:0,l:0}, padding:{t:0,r:0,b:0,l:0} }
+    content: "Time to awaken your social senses"
+    states: {}
+    motion: { trigger: load, from:{opacity:1}, to:{opacity:1}, duration:0, easing:"cubic-bezier(0,0,1,1)", delay:0 }
+
+a11y:
+  contrast: "≥ 4.5:1 vs background"
+  keyboard: "N/A"
+  reducedMotion: "No motion."
+
+acceptance:
+  breakpoints: ["360","393","430"]
+  overlayTolerancePercent: 0.10
