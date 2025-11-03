@@ -11,8 +11,8 @@ conventions:
 routes:
 
   # --------------------------- CORE FLOW ------------------------------------
-  - id: splash
-    path: /splash
+  - id: loading
+    path: /loading
     kind: screen
     purpose: Branded loading while app initializes (logo centered on grey bg with colored arcs).
     entersFrom: app.launch
