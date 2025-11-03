@@ -2,9 +2,9 @@ sliceId: "loading.logoArc"
 route: "/loading"
 
 overlays:
-  360: "routes/loading/overlays/loading-logo-360.png"
-  393: "routes/loading/overlays/loading-logo-393.png"
-  430: "routes/loading/overlays/loading-logo-430.png"
+  360: "routes/loading/overlays/loading-360.png"
+  393: "routes/loading/overlays/loading-393.png"
+  430: "routes/loading/overlays/loading-430.png"
 
 layout:
   container: viewport
@@ -26,7 +26,7 @@ elements:
     content: "Proxy mark (colored arc) — asset id: proxy_mark_color"
     states: {}
     motion: null
-    notes: "At runtime: center horizontally AND vertically in the viewport. Keep the size (w,h) per breakpoint; ignore the absolute Y if device height differs."
+    notes: "At runtime: center horizontally AND vertically in the viewport. Keep the size (w,h) per breakpoint; absolute Y is canonical for overlays only."
 
 a11y:
   contrast: "n/a (symbol on flat BG)"
