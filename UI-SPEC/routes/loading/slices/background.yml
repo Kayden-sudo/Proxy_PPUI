@@ -1,0 +1,36 @@
+sliceId: "loading.background"
+route: "/loading"
+
+overlays:
+  360: "routes/loading/overlays/loading-bg-360.png"
+  393: "routes/loading/overlays/loading-bg-393.png"
+  430: "routes/loading/overlays/loading-bg-430.png"
+
+layout:
+  container: viewport
+  columns: 12
+  gutter: 0
+  padding: { top: 0, right: 0, bottom: 0, left: 0 }
+
+elements:
+  - id: "bg"
+    kind: section
+    box:
+      360: { x: 0, y: 0, w: 360, h: 653 }
+      393: { x: 0, y: 0, w: 393, h: 713 }
+      430: { x: 0, y: 0, w: 430, h: 780 }
+    colors: { bg: "#F3F4F6" }
+    borders: { width: 0, style: solid, radius: 0 }
+    shadow: none
+    spacing: { margin: { t:0, r:0, b:0, l:0 }, padding: { t:0, r:0, b:0, l:0 } }
+    content: ""  # full-bleed background; no text
+    states: {}
+
+a11y:
+  contrast: ">= 4.5:1 for body text, >= 3:1 for large text (no text on this slice)"
+  keyboard: "No focus targets on this slice"
+  reducedMotion: "No motion on this slice"
+
+acceptance:
+  breakpoints: [360, 393, 430]
+  overlayTolerancePercent: 0.10
