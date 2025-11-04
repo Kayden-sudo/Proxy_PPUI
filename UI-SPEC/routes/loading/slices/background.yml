@@ -2,9 +2,9 @@ sliceId: "loading.background"
 route: "/loading"
 
 overlays:
-  360: "UI-SPEC/routes/loading/overlays/loading-360.png"
-  393: "UI-SPEC/routes/loading/overlays/loading-393.png"
-  430: "UI-SPEC/routes/loading/overlays/loading-430.png"
+  "360": "UI-SPEC/routes/loading/overlays/loading-360.png"
+  "393": "UI-SPEC/routes/loading/overlays/loading-393.png"
+  "430": "UI-SPEC/routes/loading/overlays/loading-430.png"
 
 layout:
   container: viewport
@@ -16,9 +16,9 @@ elements:
   - id: "bg"
     kind: section
     box:
-      360: { x: 0, y: 0, w: 360, h: 653 }
-      393: { x: 0, y: 0, w: 393, h: 713 }
-      430: { x: 0, y: 0, w: 430, h: 780 }
+      "360": { x: 0, y: 0, w: 360, h: 653 }
+      "393": { x: 0, y: 0, w: 393, h: 713 }
+      "430": { x: 0, y: 0, w: 430, h: 780 }
     colors: { bg: "#F3F4F6" }
     borders: { width: 0, style: solid, radius: 0 }
     shadow: none
@@ -33,5 +33,5 @@ a11y:
   reducedMotion: "No motion on this slice"
 
 acceptance:
-  breakpoints: [360, 393, 430]
+  breakpoints: ["360", "393", "430"]
   overlayTolerancePercent: 0.10

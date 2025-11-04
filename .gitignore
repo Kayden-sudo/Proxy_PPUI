@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+scripts/node_modules/
+
+# Generated files
+preflight-results.json
+validation-results.json
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+

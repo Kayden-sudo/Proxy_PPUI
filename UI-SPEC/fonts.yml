@@ -1,0 +1,281 @@
+# Font Strategy for Proxy Mobile App
+# Target: React Native + Expo implementation
+
+project: "Proxy"
+baseline: "Mobile-only (portrait) @ 360×640 baseline, scaling to 393 & 430"
+
+# ══════════════════════════════════════════════════════════════════════════════
+# PRIMARY FONT FAMILY
+# ══════════════════════════════════════════════════════════════════════════════
+
+primary:
+  family: "Rubik"
+  source: "expo-google-fonts"
+  package: "@expo-google-fonts/rubik"
+  install: "npx expo install expo-font @expo-google-fonts/rubik"
+  
+  weights:
+    light:
+      value: 300
+      usage: "Rare. Reserved for subtle taglines or secondary micro-copy."
+      
+    regular:
+      value: 400
+      usage: "Default body text, labels, most UI copy."
+      tokenRefs:
+        - "typography.body.base"
+        - "typography.heading.h1.regular"
+        - "typography.button.secondary"
+      
+    medium:
+      value: 500
+      usage: "Headings, button labels, emphasis text (e.g., policy links)."
+      tokenRefs:
+        - "typography.heading.h1.medium"
+        - "typography.button.primary"
+  
+  notes: >
+    Rubik is the ONLY font family used for all interactive text in the app.
+    Limit weights to 300/400/500 to reduce bundle size (~90KB total for 3 weights).
+    Do NOT use: Rubik Black (900), Bold (700), SemiBold (600), or Thin (100).
+
+  loading:
+    strategy: "preload"
+    implementation: |
+      import { useFonts, Rubik_300Light, Rubik_400Regular, Rubik_500Medium } from '@expo-google-fonts/rubik';
+      import * as SplashScreen from 'expo-splash-screen';
+
+      export default function App() {
+        const [fontsLoaded] = useFonts({
+          Rubik_300Light,
+          Rubik_400Regular,
+          Rubik_500Medium,
+        });
+
+        useEffect(() => {
+          if (fontsLoaded) {
+            SplashScreen.hideAsync();
+          }
+        }, [fontsLoaded]);
+
+        if (!fontsLoaded) return null;
+        return <YourApp />;
+      }
+
+# ══════════════════════════════════════════════════════════════════════════════
+# LOGO WORDMARK FONT (NON-INTERACTIVE)
+# ══════════════════════════════════════════════════════════════════════════════
+
+logo:
+  family: "Etna Sans Serif"
+  source: "embedded-in-svg"
+  usage: "Logo wordmark ('Proxy') ONLY — not used for interactive text."
+  
+  implementation:
+    strategy: "svg-with-outlined-paths"
+    files:
+      - "UI-SPEC/assets/logo/proxy_word_black.svg"
+      - "UI-SPEC/assets/logo/proxy_lockup_black.svg"
+      - "UI-SPEC/assets/logo/proxy_lockup_gold.svg"
+    
+    notes: >
+      Etna Sans Serif font is NOT required as a loadable font file.
+      All logo SVGs have text converted to outlined paths (no font dependency).
+      Use react-native-svg to render these SVGs directly in React Native.
+    
+    verification: |
+      Open any logo SVG file and confirm:
+      - No <text> elements with font-family="Etna"
+      - Only <path> elements (text is converted to vector paths)
+      - Safe to use without installing Etna font
+
+  doNotInstall: true
+  reason: "Font is already baked into SVG paths; no runtime font needed."
+
+# ══════════════════════════════════════════════════════════════════════════════
+# TYPOGRAPHY TOKEN MAPPING
+# ══════════════════════════════════════════════════════════════════════════════
+
+# Maps tokens.yml typography styles to actual font configurations
+tokenMapping:
+  "typography.body.base":
+    family: "Rubik"
+    weight: 400  # Regular
+    size: 8.5
+    lineHeight: 11.9
+    letterSpacing: 26.3
+    rn_fontFamily: "Rubik_400Regular"
+
+  "typography.heading.h1.regular":
+    family: "Rubik"
+    weight: 400
+    size: 10
+    lineHeight: 14
+    letterSpacing: 13.3
+    rn_fontFamily: "Rubik_400Regular"
+
+  "typography.heading.h1.medium":
+    family: "Rubik"
+    weight: 500
+    size: 10
+    lineHeight: 14
+    letterSpacing: 13.3
+    rn_fontFamily: "Rubik_500Medium"
+
+  "typography.button.primary":
+    family: "Rubik"
+    weight: 500
+    size: 9.3
+    lineHeight: 13.0
+    rn_fontFamily: "Rubik_500Medium"
+
+  "typography.button.secondary":
+    family: "Rubik"
+    weight: 400
+    size: 8.0
+    lineHeight: 11.2
+    rn_fontFamily: "Rubik_400Regular"
+
+# ══════════════════════════════════════════════════════════════════════════════
+# IMPLEMENTATION GUIDE
+# ══════════════════════════════════════════════════════════════════════════════
+
+implementation:
+  setup:
+    - step: 1
+      action: "Install Expo Google Fonts package"
+      command: "npx expo install expo-font @expo-google-fonts/rubik"
+    
+    - step: 2
+      action: "Import and load fonts in App.tsx"
+      code: "See 'loading.implementation' section above"
+    
+    - step: 3
+      action: "Create typography utility"
+      file: "utils/typography.ts"
+      example: |
+        export const typography = {
+          body: {
+            base: {
+              fontFamily: 'Rubik_400Regular',
+              fontSize: 8.5,
+              lineHeight: 11.9,
+              letterSpacing: 0.263, // RN uses absolute values
+            }
+          },
+          heading: {
+            h1: {
+              regular: {
+                fontFamily: 'Rubik_400Regular',
+                fontSize: 10,
+                lineHeight: 14,
+                letterSpacing: 0.133,
+              },
+              medium: {
+                fontFamily: 'Rubik_500Medium',
+                fontSize: 10,
+                lineHeight: 14,
+                letterSpacing: 0.133,
+              }
+            }
+          }
+        };
+
+  usage:
+    text: |
+      <Text style={typography.body.base}>
+        Welcome to Proxy
+      </Text>
+    
+    button: |
+      <Text style={typography.button.primary}>
+        Create account
+      </Text>
+
+  letterSpacing:
+    note: >
+      Canva exports letter-spacing in scaled units (e.g., 26.3 @ 360px baseline).
+      React Native expects absolute pixel values.
+      Convert: Canva value ÷ 1000 × fontSize = RN letterSpacing.
+      Example: 26.3 spacing @ 8.5 fontSize → 0.263 letterSpacing in RN.
+
+# ══════════════════════════════════════════════════════════════════════════════
+# TROUBLESHOOTING
+# ══════════════════════════════════════════════════════════════════════════════
+
+troubleshooting:
+  fontNotLoading:
+    symptom: "Text appears in system default font (not Rubik)"
+    causes:
+      - "useFonts hook hasn't returned true yet"
+      - "Font name typo (must match exact import name)"
+      - "App rendered before fonts loaded"
+    fix: "Ensure conditional render: if (!fontsLoaded) return null;"
+
+  logoWordmarkNotShowing:
+    symptom: "Logo appears blank or with missing text"
+    causes:
+      - "SVG renderer not installed (react-native-svg)"
+      - "Path data malformed in SVG"
+    fix: "Install: npx expo install react-native-svg"
+
+  letterSpacingWrong:
+    symptom: "Text too tight or too loose vs design"
+    causes:
+      - "Using Canva units instead of RN absolute values"
+    fix: "Convert: canvaValue ÷ 1000 × fontSize"
+
+# ══════════════════════════════════════════════════════════════════════════════
+# BUNDLE SIZE IMPACT
+# ══════════════════════════════════════════════════════════════════════════════
+
+bundleSize:
+  rubik:
+    light: "~30KB (woff2)"
+    regular: "~30KB (woff2)"
+    medium: "~30KB (woff2)"
+    total: "~90KB for 3 weights"
+  
+  etna:
+    total: "0KB (not installed; embedded in SVG paths)"
+  
+  optimization:
+    strategy: "Preload on app launch; fonts cached persistently."
+    recommendation: "Do NOT lazy-load Rubik; it's needed on every screen."
+
+# ══════════════════════════════════════════════════════════════════════════════
+# NOTES FOR DESIGNERS / FUTURE ADDITIONS
+# ══════════════════════════════════════════════════════════════════════════════
+
+designerNotes:
+  addingNewWeights:
+    warning: >
+      If a new design uses Rubik Bold (700) or other weights, coordinate with dev
+      to ensure the weight is added to the preload list and token mappings.
+      Avoid using >3 weights to minimize bundle size.
+  
+  newFontFamily:
+    process: |
+      1. Confirm font is available in Google Fonts or can be embedded.
+      2. Add to this file under a new section.
+      3. Update tokens.yml with new typography styles.
+      4. Update App.tsx to preload the new family.
+      5. Test on iOS, Android, and web (if applicable).
+  
+  canvaExportTips:
+    - "Always export text sizes at 1:1 scale (no scaling in Canva export)."
+    - "Divide Canva dimensions by 3 for 360px baseline."
+    - "Letter-spacing: note Canva's value in tokens.yml, convert for RN."
+
+# ══════════════════════════════════════════════════════════════════════════════
+# VERSION HISTORY
+# ══════════════════════════════════════════════════════════════════════════════
+
+changelog:
+  - version: "1.0.0"
+    date: "2025-11-04"
+    changes:
+      - "Initial font strategy documentation"
+      - "Confirmed Etna Sans Serif is embedded in SVG paths (no install needed)"
+      - "Mapped all typography tokens to Rubik weights"
+

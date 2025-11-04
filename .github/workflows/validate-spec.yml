@@ -1,0 +1,181 @@
+name: Validate UI-SPEC
+
+on:
+  push:
+    branches: ['**']
+    paths:
+      - 'UI-SPEC/**'
+      - 'scripts/**'
+      - '.github/workflows/validate-spec.yml'
+  pull_request:
+    branches: ['main', 'master', 'develop']
+    paths:
+      - 'UI-SPEC/**'
+      - 'scripts/**'
+
+jobs:
+  validate:
+    name: Run Preflight Validation
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm install
+      
+      - name: Run preflight validation
+        run: npm run validate
+      
+      - name: Upload validation results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: validation-results
+          path: preflight-results.json
+          if-no-files-found: ignore
+      
+      - name: Comment validation results on PR
+        if: failure() && github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const resultsPath = 'preflight-results.json';
+            
+            if (!fs.existsSync(resultsPath)) {
+              return;
+            }
+            
+            const results = JSON.parse(fs.readFileSync(resultsPath, 'utf8'));
+            const errors = results.errors || [];
+            const warnings = results.warnings || [];
+            
+            let comment = '## ❌ UI-SPEC Validation Failed\n\n';
+            
+            if (errors.length > 0) {
+              comment += `### Errors (${errors.length})\n\n`;
+              errors.slice(0, 10).forEach(err => {
+                comment += `- **[${err.category}]** \`${err.file}\`\n`;
+                comment += `  ${err.message}\n\n`;
+              });
+              
+              if (errors.length > 10) {
+                comment += `_...and ${errors.length - 10} more errors_\n\n`;
+              }
+            }
+            
+            if (warnings.length > 0) {
+              comment += `### Warnings (${warnings.length})\n\n`;
+              warnings.slice(0, 5).forEach(warn => {
+                comment += `- **[${warn.category}]** \`${warn.file}\`\n`;
+                comment += `  ${warn.message}\n\n`;
+              });
+              
+              if (warnings.length > 5) {
+                comment += `_...and ${warnings.length - 5} more warnings_\n\n`;
+              }
+            }
+            
+            comment += '\n---\n';
+            comment += 'Run `npm run validate` locally to see full results.\n';
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.name,
+              body: comment
+            });
+
+  validate-assets:
+    name: Check Asset Files
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Check for missing asset files
+        run: |
+          echo "Checking asset file existence..."
+          missing=0
+          
+          # Check all PNG files referenced in overlays
+          for png in UI-SPEC/routes/*/overlays/*.png; do
+            if [ ! -f "$png" ]; then
+              echo "❌ Missing: $png"
+              missing=$((missing + 1))
+            fi
+          done
+          
+          # Check SVG assets
+          for svg in UI-SPEC/assets/*/*.svg; do
+            if [ ! -f "$svg" ]; then
+              echo "❌ Missing: $svg"
+              missing=$((missing + 1))
+            fi
+          done
+          
+          if [ $missing -gt 0 ]; then
+            echo ""
+            echo "❌ $missing asset file(s) missing"
+            exit 1
+          fi
+          
+          echo "✅ All asset files present"
+      
+      - name: Check for double extensions
+        run: |
+          echo "Checking for .svg.svg double extensions..."
+          doubles=$(find UI-SPEC/assets -name "*.svg.svg" 2>/dev/null || true)
+          
+          if [ -n "$doubles" ]; then
+            echo "❌ Found files with double .svg.svg extension:"
+            echo "$doubles"
+            exit 1
+          fi
+          
+          echo "✅ No double extensions found"
+
+  yaml-lint:
+    name: Lint YAML Files
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      
+      - name: Install js-yaml
+        run: npm install js-yaml
+      
+      - name: Validate YAML syntax
+        run: |
+          echo "Validating YAML files..."
+          npx js-yaml UI-SPEC/meta.yml > /dev/null
+          npx js-yaml UI-SPEC/tokens.yml > /dev/null
+          npx js-yaml UI-SPEC/grid.yml > /dev/null
+          npx js-yaml UI-SPEC/motion.yml > /dev/null
+          npx js-yaml UI-SPEC/assets.yml > /dev/null
+          npx js-yaml UI-SPEC/registry.yml > /dev/null
+          
+          for route in UI-SPEC/routes/*/slices/*.yml; do
+            npx js-yaml "$route" > /dev/null || {
+              echo "❌ Invalid YAML: $route"
+              exit 1
+            }
+          done
+          
+          echo "✅ All YAML files valid"
+

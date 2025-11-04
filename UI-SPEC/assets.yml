@@ -2,116 +2,116 @@
 # Notes aim to brief the future implementer reading this repo cold.
 
 # ── LOGOS ─────────────────────────────────────────────────────────────────────
-- id: logo_mark_black
+- id: logo.mark.black
   type: svg
   path: UI-SPEC/assets/logo/proxy_mark_black.svg
   intrinsic: [1440, 810]
   notes: "Symbol only, mono. Safe to tint from tokens on light backgrounds (e.g., headers, nav, small badges)."
 
-- id: proxy_mark_color          # <— stable id for the colored mark (as you confirmed)
+- id: proxy_mark_color
   type: svg
   path: UI-SPEC/assets/logo/proxy_mark_color.svg
   intrinsic: [1440, 810]
   notes: "Symbol only with baked brand colors. Use as-is on light backgrounds (e.g., splash/loading); do not tint."
 
-- id: logo_lockup_black
+- id: logo.lockup.black
   type: svg
   path: UI-SPEC/assets/logo/proxy_lockup_black.svg
   intrinsic: [1440, 810]
   notes: "Symbol + 'Proxy' wordmark in mono. Use for standard headers/heroes on light backgrounds."
 
-- id: logo_lockup_gold
+- id: logo.lockup.gold
   type: svg
   path: UI-SPEC/assets/logo/proxy_lockup_gold.svg
   intrinsic: [1440, 810]
   notes: "Premium lockup (Proxy+). Gold is baked (matches premium token #A48208). Use on paywall/premium only; do not tint."
 
-- id: logo_word_black
+- id: logo.wordmark.black
   type: svg
   path: UI-SPEC/assets/logo/proxy_word_black.svg
   intrinsic: [1440, 810]
   notes: "Word-only 'Proxy' (Etna). Use when the symbol is shown elsewhere, or where a compact wordmark is preferable."
 
 # ── ICONS (add files under /UI-SPEC/assets/icons/) ────────────────────────────
-- id: icon_provider_apple
+- id: icon.provider.apple
   type: svg
   path: UI-SPEC/assets/icons/ic_provider_apple.svg
   intrinsic: [1440, 810]
   notes: "Apple sign-in badge/icon used in auth provider row. Use as-is (do not tint)."
 
-- id: icon_provider_google
+- id: icon.provider.google
   type: svg
   path: UI-SPEC/assets/icons/ic_provider_google.svg
   intrinsic: [1440, 810]
   notes: "Google sign-in badge/icon used in auth provider row. Use as-is (do not tint)."
 
-- id: icon_edit_pen_white
+- id: icon.edit.pen.white
   type: svg
   path: UI-SPEC/assets/icons/ic_edit_pen_white.svg
   intrinsic: [1440, 810]
   notes: "White pen used on 'Edit my profile' button/pill. Intended for dark/purple surfaces; keep white."
 
-- id: icon_settings
+- id: icon.settings
   type: svg
   path: UI-SPEC/assets/icons/ic_settings.svg
   intrinsic: [1440, 810]
   notes: "Gear icon used in the top-right of Profile and in Settings list headers. Can inherit color from tokens."
 
-- id: icon_wave_hand
+- id: icon.wave.hand
   type: svg
   path: UI-SPEC/assets/icons/ic_wave_hand.svg
   intrinsic: [1440, 810]
   notes: "Waving hand used in 'Angie waved at you!' overlay and other micro-interactions."
 
-- id: icon_nav_chat
+- id: icon.nav.chat
   type: svg
   path: UI-SPEC/assets/icons/ic_nav_chat.svg
   intrinsic: [1440, 810]
   notes: "Bottom tab — Chat. Default color = tokens.ink/fg on light BG; active state uses brand color per tokens."
 
-- id: icon_nav_location
+- id: icon.nav.location
   type: svg
   path: UI-SPEC/assets/icons/ic_nav_location.svg
   intrinsic: [1440, 810]
   notes: "Bottom tab — Home/Proximity (map pin). Same color policy as other tabs."
 
-- id: icon_nav_profile
+- id: icon.nav.profile
   type: svg
   path: UI-SPEC/assets/icons/ic_nav_profile.svg
   intrinsic: [1440, 810]
   notes: "Bottom tab — Profile. Same color policy as other tabs."
 
-  - id: "icon.enter_as_guest_arrow"
+- id: "icon.enter_as_guest_arrow"
   type: svg
-  path: UI-SPEC/assets/icons/enter-as-guest-arrow.svg
-  intrinsic: [6.1, 9.3]   # using 430 box as intrinsic; if the SVG viewBox differs, tell me and I’ll update
+  path: "UI-SPEC/assets/icons/enter-as-guest-arrow.svg"
+  intrinsic: [6.1, 9.3]
   notes: "Arrow used in 'Enter as guest' link; reused across breakpoints; native color."
 
 # ── BUTTONS (add files under /UI-SPEC/assets/buttons/) ────────────────────────────
-  
-  - id: "cta.create.acc"
+
+- id: "cta.create.acc"
   type: svg
-  path: UI-SPEC/assets/buttons/create.acc.svg
-  intrinsic: [295.0, 46.6]   # proposed: match the 430 box; replace with the SVG's exact viewBox if different
+  path: "UI-SPEC/assets/buttons/create.acc.svg"
+  intrinsic: [295.0, 46.6]
   notes: "Primary CTA (Create account) with integrated notch + label; text outlined; native colors; reused across breakpoints."
 
 # ── SOFT BLURS (add files under /UI-SPEC/assets/blob/) ────────────────────────────
 
-  - id: "blob.green.v1"
-    type: png
-    path: UI-SPEC/assets/blob/blob.green.png
-    intrinsic: [1920, 1080]
-    notes: "Soft green blur; dominant #68E5AE @100% opacity; sRGB PNG with transparent background."
+- id: "blob.green.v1"
+  type: png
+  path: "UI-SPEC/assets/blob/blob.green.png"
+  intrinsic: [1920, 1080]
+  notes: "Soft green blur; dominant #68E5AE @100% opacity; sRGB PNG with transparent background."
 
-  - id: "blob.purple.v1"
-    type: png
-    path: UI-SPEC/assets/blob/blob.purple.png
-    intrinsic: [1920, 1080]
-    notes: "Soft purple blur; dominant #A99BF2 @100% opacity; sRGB PNG with transparent background."
+- id: "blob.purple.v1"
+  type: png
+  path: "UI-SPEC/assets/blob/blob.purple.png"
+  intrinsic: [1920, 1080]
+  notes: "Soft purple blur; dominant #A99BF2 @100% opacity; sRGB PNG with transparent background."
 
-  - id: "blob.grey.v1"
-    type: png
-    path: UI-SPEC/assets/blob/blob.grey.png
-    intrinsic: [1920, 1080]
-    notes: "Soft grey blur; dominant #B7B7B5 @100% opacity; sRGB PNG with transparent background."
+- id: "blob.grey.v1"
+  type: png
+  path: "UI-SPEC/assets/blob/blob.grey.png"
+  intrinsic: [1920, 1080]
+  notes: "Soft grey blur; dominant #B7B7B5 @100% opacity; sRGB PNG with transparent background."
 

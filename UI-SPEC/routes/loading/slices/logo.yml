@@ -2,9 +2,9 @@ sliceId: "loading.logoArc"
 route: "/loading"
 
 overlays:
-  360: "UI-SPEC/routes/loading/overlays/loading-360.png"
-  393: "UI-SPEC/routes/loading/overlays/loading-393.png"
-  430: "UI-SPEC/routes/loading/overlays/loading-430.png"
+  "360": "UI-SPEC/routes/loading/overlays/loading-360.png"
+  "393": "UI-SPEC/routes/loading/overlays/loading-393.png"
+  "430": "UI-SPEC/routes/loading/overlays/loading-430.png"
 
 layout:
   container: viewport
@@ -15,15 +15,16 @@ layout:
 elements:
   - id: "logo"
     kind: image
+    asset: "proxy_mark_color"
     box:
-      360: { x: 133.567, y: 274.567, w: 93.167, h: 86.633 }
-      393: { x: 145.810, y: 299.735, w: 101.707, h: 94.575 }
-      430: { x: 159.538, y: 327.955, w: 111.282, h: 103.479 }
+      "360": { x: 133.567, y: 274.567, w: 93.167, h: 86.633 }
+      "393": { x: 145.810, y: 299.735, w: 101.707, h: 94.575 }
+      "430": { x: 159.538, y: 327.955, w: 111.282, h: 103.479 }
     colors: { fg: none, bg: none, border: none }
     borders: { width: 0, style: solid, radius: 0 }
     shadow: none
     spacing: { margin: { t:0, r:0, b:0, l:0 }, padding: { t:0, r:0, b:0, l:0 } }
-    content: "Proxy mark (colored arc) — asset id: proxy_mark_color"
+    content: "Proxy mark (colored arc)"
     states: {}
     motion: null
     notes: "At runtime: center horizontally AND vertically in the viewport. Keep the size (w,h) per breakpoint; absolute Y is canonical for overlays only."
@@ -34,5 +35,5 @@ a11y:
   reducedMotion: "No motion on this slice"
 
 acceptance:
-  breakpoints: [360, 393, 430]
+  breakpoints: ["360", "393", "430"]
   overlayTolerancePercent: 0.10

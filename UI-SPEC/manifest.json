@@ -1,0 +1,117 @@
+{
+  "version": "1.0.0",
+  "generated": "2025-11-04T03:31:51.967Z",
+  "project": {
+    "name": "Proxy",
+    "description": "Pixel-perfect UI specification for mobile app",
+    "baseline": "360×640 px (portrait)",
+    "breakpoints": [
+      360,
+      393,
+      430
+    ],
+    "units": "px",
+    "colorSpace": "sRGB"
+  },
+  "spec": {
+    "root": "UI-SPEC/",
+    "core": [
+      "meta.yml",
+      "tokens.yml",
+      "grid.yml",
+      "motion.yml",
+      "assets.yml",
+      "registry.yml",
+      "fonts.yml"
+    ]
+  },
+  "assets": {
+    "total": 18,
+    "byType": {
+      "svg": 15,
+      "png": 3,
+      "lottie": 0
+    },
+    "catalog": "assets.yml"
+  },
+  "routes": {
+    "total": 27,
+    "implemented": 2,
+    "planned": 26,
+    "details": {
+      "loading": {
+        "status": "implemented",
+        "slices": 2,
+        "overlays": 3,
+        "path": "/loading",
+        "kind": "screen",
+        "purpose": "Branded loading while app initializes (logo centered on grey bg with colored arcs)."
+      },
+      "welcome-screen": {
+        "status": "implemented",
+        "slices": 9,
+        "overlays": 3,
+        "path": "/welcome-screen",
+        "kind": "screen",
+        "purpose": ""
+      }
+    },
+    "plannedList": [
+      "auth.welcome",
+      "auth.signIn",
+      "auth.signUp.phone",
+      "auth.signUp.verify",
+      "onboarding.password",
+      "onboarding.name",
+      "onboarding.age",
+      "onboarding.photo",
+      "home",
+      "chats.list",
+      "chat.thread",
+      "profile",
+      "settings",
+      "wave.received",
+      "guest.gate",
+      "system.offline",
+      "permission.location",
+      "permission.notifications",
+      "account.deleteConfirm",
+      "legal.terms",
+      "legal.privacy",
+      "legal.cookies",
+      "premium.sheet",
+      "premium.paywall",
+      "oauth.apple",
+      "oauth.google"
+    ]
+  },
+  "slices": {
+    "total": 11,
+    "perRoute": {
+      "loading": 2,
+      "welcome-screen": 9
+    }
+  },
+  "overlays": {
+    "total": 6,
+    "perRoute": {
+      "loading": 3,
+      "welcome-screen": 3
+    }
+  },
+  "readiness": {
+    "codeGen": true,
+    "production": false,
+    "coverage": "2/27 routes"
+  },
+  "validation": {
+    "script": "scripts/preflight.js",
+    "command": "npm run validate",
+    "ci": ".github/workflows/validate-spec.yml"
+  },
+  "documentation": {
+    "fonts": "UI-SPEC/fonts.yml",
+    "readme": "UI-SPEC/README.md",
+    "changelog": "FIXES-APPLIED.md"
+  }
+}
